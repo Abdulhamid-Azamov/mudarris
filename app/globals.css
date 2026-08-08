@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+/*
+  Design tokens.
+  Palette is unchanged from the brand: navy (#183463) and white were already
+  used across the UI; gold/yellow (#E5E200) already existed in the logo and
+  in the decorative "harf" letter artwork + hero photo, it just wasn't wired
+  up as a CSS token yet.
+*/
+@theme {
+  --color-navy: #183463;
+  --color-navy-deep: #101f3d;
+  --color-navy-soft: #eef1f8;
+  --color-accent: #e5e200;
+  --color-accent-deep: #c7c400;
+  --color-ink: #16233f;
+
+  --font-display: var(--font-cairo), "Cairo", ui-sans-serif, sans-serif;
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-soft: 0 20px 45px -20px rgb(16 31 61 / 0.35);
+  --shadow-card: 0 10px 30px -12px rgb(16 31 61 / 0.18);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--color-ink);
+}
+
+.containers {
+  max-width: 1200px;
+  width: 100%;
+  margin: 30px auto;
+}
+.centralize {
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Scroll-reveal animation used by the <Reveal> component. Kept subtle and
+   applied selectively, not on every element. */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  opacity: 0;
+}
+
+.reveal.is-visible {
+  animation: reveal-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    animation: none;
+    transform: none;
+  }
+
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
