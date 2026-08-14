@@ -226,7 +226,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom */}
-        <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-white/[0.08] pt-5 sm:flex-row">
+        <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-white/8 pt-5 sm:flex-row">
           <p className="text-xs text-white/35">
             © {year}. Barcha huquqlar himoyalangan.
           </p>

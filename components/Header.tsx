@@ -11,8 +11,8 @@ type Lang = "uz" | "ru"
 const NAV_LINKS = [
   { href: "/", label: "Bosh sahifa" },
   { href: "/about", label: "Biz haqimizda" },
-  { href: "/courses", label: "Kurslar" },
-  { href: "/locations", label: "Joylashuvlarimiz" },
+  { href: "/#courses", label: "Kurslar" },
+  { href: "/contact", label: "Bog'lanish" },
   { href: "/savollar", label: "FAQ" },
 ]
 

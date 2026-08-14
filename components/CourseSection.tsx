@@ -26,7 +26,7 @@ const COURSES: Course[] = [
 
 const CourseSection = () => {
   return (
-    <section className="relative overflow-hidden bg-navy px-5 py-16 sm:py-20 lg:py-24">
+    <section id="courses" className="relative overflow-hidden bg-navy px-5 py-16 sm:py-20 lg:py-24">
       <Reveal className="mx-auto max-w-2xl text-center">
         <h2 className="font-display text-[26px] font-extrabold uppercase text-white sm:text-[34px] md:text-[38px]">
           Mavjud kurslarimiz
