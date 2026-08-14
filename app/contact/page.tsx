@@ -1,17 +1,17 @@
 const Contact = () => {
   return (
     <main className="flex min-h-screen items-center justify-center bg-[#f3f3f3] px-4 py-10 sm:px-6 lg:px-8">
-      <section className="relative w-full max-w-[1180px] overflow-hidden rounded-[32px]" style={{  background:   "linear-gradient(90deg, #0d3c74 0%, #0e3b75 45%, #0d3970 100%)",  boxShadow: "0 26px 70px rgba(12, 41, 74, 0.16)",   }}  >
+      <section className="relative w-full max-w-295 overflow-hidden rounded-4xl" style={{  background:   "linear-gradient(90deg, #0d3c74 0%, #0e3b75 45%, #0d3970 100%)",  boxShadow: "0 26px 70px rgba(12, 41, 74, 0.16)",   }}  >
         <div  className="absolute inset-0 opacity-40 bg-navy"  />
 
         <div className="relative grid gap-8 md:grid-cols-[1.1fr_0.9fr] md:gap-4 lg:gap-10">
           <div className="flex flex-col justify-center px-6 py-10 sm:px-9 md:px-10 lg:px-14 lg:py-16">
-            <h1 className="max-w-[500px] text-3xl font-black uppercase leading-[1.1] tracking-[-0.04em] text-white sm:text-4xl lg:text-[3.1rem]">
+            <h1 className="max-w-125 text-3xl font-black uppercase leading-[1.1] tracking-[-0.04em] text-white sm:text-4xl lg:text-[3.1rem]">
               Kurslarmizga
               <span className="mt-2 block text-white/90">hoziroq yoziling</span>
             </h1>
 
-            <p className="mt-6 max-w-[430px] text-base text-white/75">
+            <p className="mt-6 max-w-107.5 text-base text-white/75">
               Kurslarimiz haqidagi batafsil ma&apos;lumotni bilib oling
             </p>
 
@@ -24,7 +24,7 @@ const Contact = () => {
           </div>
 
           <div className="flex items-center justify-center px-5 pb-6 pt-2 sm:px-7 md:px-6 md:pb-8 lg:px-10 lg:pb-12">
-            <div className="w-full max-w-[430px] rounded-[28px] bg-[#f5f5f5] p-5 shadow-[0_18px_45px_rgba(16,31,61,0.12)] sm:p-7 lg:p-8">
+            <div className="w-full max-w-107.5 rounded-[28px] bg-[#f5f5f5] p-5 shadow-[0_18px_45px_rgba(16,31,61,0.12)] sm:p-7 lg:p-8">
               <form className="space-y-5">
                 <div>
                   <h2 className="text-[2rem] font-extrabold leading-none text-[#0d3c74]">

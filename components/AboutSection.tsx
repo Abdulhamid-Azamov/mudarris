@@ -68,9 +68,9 @@ const AboutSection = () => {
         </h2>
       </Reveal>
 
-      <Reveal delay={100} className="centralize mt-10 rounded-[28px] bg-white p-4 shadow-(--shadow-card) sm:p-6 md:p-10">
+      <Reveal delay={100} className="mx-auto mt-10 w-full max-w-275 rounded-[28px] bg-white p-4 shadow-(--shadow-card) sm:p-6 md:p-10">
         <div className="flex flex-col items-center gap-8 rounded-[20px] bg-navy p-6 sm:p-8 md:flex-row md:items-center md:gap-10 md:p-10">
-          <div className="w-full md:w-[42%]">
+          <div className="w-full md:w-[42%] md:max-w-105">
             <div className="relative touch-pan-y select-none overflow-hidden rounded-[18px] cursor-grab active:cursor-grabbing" onPointerDown={handlePointerDown} onPointerMove={handlePointerMove} onPointerUp={endDrag} onPointerLeave={endDrag} onPointerCancel={endDrag} >
               <div className={`flex ${isDragging ? "" : "transition-transform duration-500 ease-out"}`}  style={{ transform: `translateX(calc(-${index * 100}% + ${dragOffset}px))` }} >
                 {SLIDES.map((slide) => (
@@ -91,7 +91,7 @@ const AboutSection = () => {
               </button>
             </div>
           </div>
-          <div className="flex flex-1 flex-col items-start gap-8">
+          <div className="flex w-full flex-1 flex-col items-start gap-8 md:max-w-135">
             <p className="text-base leading-[170%] text-white/85 sm:text-lg">
               Mudarris Akademiyasi 2021-yilda asos solingan bo&apos;lib, 4 yildan
               buyon o&apos;z faoliyatini olib bormoqda. Shu vaqtgacha 10000 dan ortiq
