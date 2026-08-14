@@ -6,87 +6,36 @@ import Image from "next/image"
 import AboutImage from "@/images/about-image.webp"
 import Reveal from "@/components/Reveal"
 
-type Branch = {
-  name: string
-  address: string
-  description: string
-  facts: { value: string; label: string }[]
-}
 
-// Shablon ma'lumotlar — har bir filial uchun aniq matn/manzil keyinchalik
-// almashtiriladi, hozircha 5 tasi ham namuna sifatida bir xil.
-const BRANCHES: Branch[] = [
-  {
-    name: "1-filial — Chilonzor",
-    address: "Toshkent sh., Chilonzor tumani",
-    description:
-      "Mudarris Akademiyasi 2021-yilda asos solingan bo'lib, 4 yildan buyon o'z faoliyatini olib bormoqda. Shu vaqtgacha 2500 dan ortiq insonlar Mudarris akademiyasida arab tilini o'rgandi.",
-    facts: [
-      { value: "2021", label: "asos solingan yil" },
-      { value: "2500+", label: "bitirgan o'quvchi" },
-      { value: "3-10 yil", label: "ustozlar tajribasi" },
-    ],
-  },
-  {
-    name: "2-filial — Yunusobod",
-    address: "Toshkent sh., Yunusobod tumani",
-    description:
-      "Yunusobod filialida ham xuddi shunday sifatli ta'lim, tajribali ustozlar va zamonaviy o'quv metodikasi asosida arab tili o'qitiladi.",
-    facts: [
-      { value: "2022", label: "ochilgan yil" },
-      { value: "800+", label: "bitirgan o'quvchi" },
-      { value: "3-8 yil", label: "ustozlar tajribasi" },
-    ],
-  },
-  {
-    name: "3-filial — Mirzo Ulug'bek",
-    address: "Toshkent sh., Mirzo Ulug'bek tumani",
-    description:
-      "Mirzo Ulug'bek filiali qulay joylashuvi va kichik guruhlarda dars olib borilishi bilan ajralib turadi.",
-    facts: [
-      { value: "2022", label: "ochilgan yil" },
-      { value: "650+", label: "bitirgan o'quvchi" },
-      { value: "4-9 yil", label: "ustozlar tajribasi" },
-    ],
-  },
-  {
-    name: "4-filial — Yashnobod",
-    address: "Toshkent sh., Yashnobod tumani",
-    description:
-      "Yashnobod filialida kattalar va bolalar uchun alohida guruhlar tashkil etilgan, individual yondashuvga alohida e'tibor qaratiladi.",
-    facts: [
-      { value: "2023", label: "ochilgan yil" },
-      { value: "400+", label: "bitirgan o'quvchi" },
-      { value: "3-7 yil", label: "ustozlar tajribasi" },
-    ],
-  },
-  {
-    name: "5-filial — Sergeli",
-    address: "Toshkent sh., Sergeli tumani",
-    description:
-      "Sergeli filiali eng so'nggi ochilgan bo'lib, akademiyaning barcha tajribasi va standartlari asosida ish yuritadi.",
-    facts: [
-      { value: "2024", label: "ochilgan yil" },
-      { value: "200+", label: "bitirgan o'quvchi" },
-      { value: "3-6 yil", label: "ustozlar tajribasi" },
-    ],
-  },
+const SLIDES = [
+  { alt: "Mudarris akademiyasi — 1-surat" },
+  { alt: "Mudarris akademiyasi — 2-surat" },
+  { alt: "Mudarris akademiyasi — 3-surat" },
+  { alt: "Mudarris akademiyasi — 4-surat" },
+  { alt: "Mudarris akademiyasi — 5-surat" },
 ]
 
-const SWIPE_THRESHOLD = 60 // shu qadar (px) surilsa, slayd almashadi
+const FACTS = [
+  { value: "2021", label: "asos solingan yil" },
+  { value: "10000+", label: "bitirgan o'quvchi" },
+  { value: "3-10 yil", label: "ustozlar tajribasi" },
+]
+
+const SWIPE_THRESHOLD = 60
 
 const AboutSection = () => {
   const [index, setIndex] = useState(0)
   const [dragOffset, setDragOffset] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
   const startXRef = useRef(0)
-  const total = BRANCHES.length
+  const total = SLIDES.length
 
   const goTo = (next: number) => {
     setIndex(((next % total) + total) % total)
   }
 
   const handlePointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (event.pointerType !== "touch") return
     startXRef.current = event.clientX
     setIsDragging(true)
     event.currentTarget.setPointerCapture(event.pointerId)
@@ -112,7 +61,7 @@ const AboutSection = () => {
     <section className="containers px-5 py-4 sm:py-8">
       <Reveal className="text-center">
         <span className="text-xs font-semibold uppercase tracking-[0.2em] text-navy/50 sm:text-sm">
-          Filiallarimiz
+          Akademiya haqida
         </span>
         <h2 className="mt-3 font-display text-[28px] font-bold text-navy sm:text-[34px] md:text-[40px]">
           Biz haqimizda
@@ -120,49 +69,60 @@ const AboutSection = () => {
       </Reveal>
 
       <Reveal delay={100} className="centralize mt-10 rounded-[28px] bg-white p-4 shadow-(--shadow-card) sm:p-6 md:p-10">
-        <div   className="touch-pan-y cursor-grab select-none overflow-hidden rounded-[20px] active:cursor-grabbing"  onPointerDown={handlePointerDown}   onPointerMove={handlePointerMove}   onPointerUp={endDrag}   onPointerLeave={endDrag}  onPointerCancel={endDrag}  >
-          <div className={`flex ${isDragging ? "" : "transition-transform duration-500 ease-out"}`} style={{ transform: `translateX(calc(-${index * 100}% + ${dragOffset}px))` }} >
-            {BRANCHES.map((branch) => (
-              <div key={branch.name} className="w-full shrink-0 px-0.5">
-                <div className="flex flex-col items-center gap-8 rounded-[20px] bg-navy p-6 sm:p-8 md:flex-row md:items-center md:gap-10 md:p-10">
-                  <Image src={AboutImage}  alt={branch.name}  width={469} height={383} draggable={false} className="w-full max-w-md rounded-[18px] object-cover md:w-[42%]" />
-                  <div className="flex flex-1 flex-col items-start gap-6">
-                    <div>
-                      <h3 className="font-display text-xl font-bold text-white sm:text-2xl">{branch.name}</h3>
-                      <p className="mt-1 text-sm text-accent">{branch.address}</p>
-                    </div>
-
-                    <p className="text-base leading-[170%] text-white/85 sm:text-lg">{branch.description}</p>
-
-                    <dl className="grid w-full grid-cols-3 gap-3 border-t border-white/10 pt-6 sm:gap-6">
-                      {branch.facts.map((fact) => (
-                        <div key={fact.label}>
-                          <dt className="sr-only">{fact.label}</dt>
-                          <dd className="font-display text-lg font-bold text-accent sm:text-2xl">{fact.value}</dd>
-                          <dd className="mt-1 text-[11px] text-white/65 sm:text-sm">{fact.label}</dd>
-                        </div>
-                      ))}
-                    </dl>
-
-                    <button className="w-full cursor-pointer rounded-full bg-white px-10 py-4 text-base font-semibold text-navy transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent hover:shadow-(--shadow-card) sm:w-auto sm:px-20 sm:text-lg">
-                      Batafsil
-                    </button>
+        <div className="flex flex-col items-center gap-8 rounded-[20px] bg-navy p-6 sm:p-8 md:flex-row md:items-center md:gap-10 md:p-10">
+          <div className="w-full md:w-[42%]">
+            <div className="relative touch-pan-y select-none overflow-hidden rounded-[18px] cursor-grab active:cursor-grabbing" onPointerDown={handlePointerDown} onPointerMove={handlePointerMove} onPointerUp={endDrag} onPointerLeave={endDrag} onPointerCancel={endDrag} >
+              <div className={`flex ${isDragging ? "" : "transition-transform duration-500 ease-out"}`}  style={{ transform: `translateX(calc(-${index * 100}% + ${dragOffset}px))` }} >
+                {SLIDES.map((slide) => (
+                  <div key={slide.alt} className="relative h-55 w-full shrink-0 sm:h-65">
+                    <Image src={AboutImage} alt={slide.alt} fill draggable={false} sizes="(min-width: 768px) 420px, 100vw" className="object-cover" />
                   </div>
-                </div>
+                ))}
               </div>
-            ))}
+              <div className="pointer-events-none absolute inset-x-0 bottom-3 flex items-center justify-center gap-1.5">
+                {SLIDES.map((slide, i) => (
+                  <span key={slide.alt} className={`h-1.5 rounded-full transition-all duration-300 ${i === index ? "w-5 bg-white" : "w-1.5 bg-white/50"}`} />))}
+              </div>
+              <button type="button" onClick={() => goTo(index - 1)} aria-label="Oldingi rasm" className="absolute left-2 top-1/2 z-10 hidden h-9 w-9 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-white/90 text-navy transition-all duration-200 hover:bg-white sm:flex" >
+                <ChevronIcon direction="left" />
+              </button>
+              <button type="button" onClick={() => goTo(index + 1)} aria-label="Keyingi rasm" className="absolute right-2 top-1/2 z-10 hidden h-9 w-9 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-white/90 text-navy transition-all duration-200 hover:bg-white sm:flex" >
+                <ChevronIcon direction="right" />
+              </button>
+            </div>
           </div>
-        </div>
+          <div className="flex flex-1 flex-col items-start gap-8">
+            <p className="text-base leading-[170%] text-white/85 sm:text-lg">
+              Mudarris Akademiyasi 2021-yilda asos solingan bo&apos;lib, 4 yildan
+              buyon o&apos;z faoliyatini olib bormoqda. Shu vaqtgacha 10000 dan ortiq
+              insonlar Mudarris akademiyasida arab tilini o&apos;rgandi. Mudarris
+              akademiyasida 3 yildan 10 yilgacha tajribaga ega ustozlar mavjud.
+            </p>
 
-        {/* Dots */}
-        <div className="mt-6 flex items-center justify-center gap-2">
-          {BRANCHES.map((branch, i) => (
-            <button key={branch.name} type="button"  onClick={() => goTo(i)} aria-label={`${branch.name} sahifasiga o'tish`} aria-current={i === index} className={`h-2.5 cursor-pointer rounded-full transition-all duration-300 ${ i === index ? "w-7 bg-navy" : "w-2.5 bg-navy/20 hover:bg-navy/40" }`} />
-          ))}
+            <dl className="grid w-full grid-cols-3 gap-3 border-t border-white/10 pt-6 sm:gap-6">
+              {FACTS.map((fact) => (
+                <div key={fact.label}>
+                  <dt className="sr-only">{fact.label}</dt>
+                  <dd className="font-display text-lg font-bold text-accent sm:text-2xl">{fact.value}</dd>
+                  <dd className="mt-1 text-[11px] text-white/65 sm:text-sm">{fact.label}</dd>
+                </div>
+              ))}
+            </dl>
+
+            <button className="w-full cursor-pointer rounded-full bg-white px-10 py-4 text-base font-semibold text-navy transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent hover:shadow-(--shadow-card) sm:w-auto sm:px-20 sm:text-lg">
+              Batafsil
+            </button>
+          </div>
         </div>
       </Reveal>
     </section>
   )
 }
+
+const ChevronIcon = ({ direction }: { direction: "left" | "right" }) => (
+  <svg viewBox="0 0 24 24" fill="none" className={`h-4 w-4 ${direction === "left" ? "" : "rotate-180"}`}>
+    <path d="M15 6L9 12L15 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+)
 
 export default AboutSection
