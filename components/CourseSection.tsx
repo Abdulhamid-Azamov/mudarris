@@ -52,7 +52,7 @@ const CourseSection = () => {
                 <p className="mt-4 text-sm leading-relaxed text-navy/65 sm:text-base">{course.description}</p>
               </div>
 
-              <button className="relative flex w-full cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-accent px-4 py-4 text-sm font-bold text-navy transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-card)] sm:px-6 sm:text-base">
+              <button className="relative flex w-full cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-accent px-4 py-4 text-sm font-bold text-navy transition-all duration-200 hover:-translate-y-0.5 hover:shadow-(--shadow-card) sm:px-6 sm:text-base">
                 Kursga yozilish
                 <ArrowIcon className="h-4 w-4 shrink-0 transition-transform duration-200 group-hover:translate-x-1" />
               </button>

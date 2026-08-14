@@ -13,6 +13,7 @@ const NAV_LINKS = [
   { href: "/about", label: "Biz haqimizda" },
   { href: "/courses", label: "Kurslar" },
   { href: "/locations", label: "Joylashuvlarimiz" },
+  { href: "/savollar", label: "FAQ" },
 ]
 
 const Header = () => {
