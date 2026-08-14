@@ -50,12 +50,9 @@ const Header = () => {
           <ul className="flex items-center gap-1 text-[15px]">
             {NAV_LINKS.map((link) => (
               <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="group relative block px-4 py-2 font-medium text-white/85 transition-colors duration-200 hover:text-white"
-                >
+                <Link  href={link.href}  className="group relative block px-4 py-2 font-medium text-white/85 transition-colors duration-200 hover:text-white"  >
                   {link.label}
-                  <span className="absolute inset-x-4 -bottom-0.5 h-[2px] origin-left scale-x-0 bg-accent transition-transform duration-300 ease-out group-hover:scale-x-100" />
+                  <span className="absolute inset-x-4 -bottom-0.5 h-0.5 origin-left scale-x-0 bg-accent transition-transform duration-300 ease-out group-hover:scale-x-100" />
                 </Link>
               </li>
             ))}
@@ -64,36 +61,23 @@ const Header = () => {
 
         <div className="hidden items-center gap-4 lg:flex">
           <LangToggle lang={lang} onChange={setLang} />
-          <button className="cursor-pointer rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-navy transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent hover:shadow-[var(--shadow-card)]">
+          <button className="cursor-pointer rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-navy transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent hover:shadow-(--shadow-card)">
             Kursga yozilish
           </button>
         </div>
 
-        <button
-          aria-label={menuOpen ? "Menyuni yopish" : "Menyuni ochish"}
-          aria-expanded={menuOpen}
-          className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/20 bg-white/10 transition-colors duration-200 hover:bg-white/20 lg:hidden"
-          onClick={() => setMenuOpen((prev) => !prev)}
-        >
+        <button  aria-label={menuOpen ? "Menyuni yopish" : "Menyuni ochish"}  aria-expanded={menuOpen}  className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/20 bg-white/10 transition-colors duration-200 hover:bg-white/20 lg:hidden"  onClick={() => setMenuOpen((prev) => !prev)}  >
           <Image src={BurgerMenuIcon} alt="" width={18} height={18} />
         </button>
       </div>
 
-      <div
-        id="mobile-menu"
-        className={`overflow-hidden transition-[grid-template-rows] duration-300 ease-out lg:hidden ${menuOpen ? "grid grid-rows-[1fr]" : "grid grid-rows-[0fr]"
-          }`}
-      >
+      <div  id="mobile-menu"  className={`overflow-hidden transition-[grid-template-rows] duration-300 ease-out lg:hidden ${menuOpen ? "grid grid-rows-[1fr]" : "grid grid-rows-[0fr]"  }`}  >
         <div className="min-h-0 border-t border-white/10 bg-navy-deep">
           <div className="flex flex-col gap-1 px-5 py-5">
             <ul className="flex flex-col gap-1 text-base">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    onClick={() => setMenuOpen(false)}
-                    className="block rounded-lg px-3 py-3 font-medium text-white/90 transition-colors duration-200 hover:bg-white/10"
-                  >
+                  <Link  href={link.href}  onClick={() => setMenuOpen(false)}  className="block rounded-lg px-3 py-3 font-medium text-white/90 transition-colors duration-200 hover:bg-white/10"  >
                     {link.label}
                   </Link>
                 </li>
@@ -121,32 +105,12 @@ type LangToggleProps = {
 
 const LangToggle = ({ lang, onChange, full }: LangToggleProps) => {
   return (
-    <div
-      role="group"
-      aria-label="Til tanlash"
-      className={`relative flex rounded-full border border-white/15 bg-white/10 p-1 ${full ? "w-full" : ""}`}
-    >
-      <span
-        aria-hidden="true"
-        className={`absolute inset-y-1 left-1 w-[calc(50%-4px)] rounded-full bg-white transition-transform duration-300 ease-out ${lang === "ru" ? "translate-x-full" : "translate-x-0"
-          }`}
-      />
-      <button
-        type="button"
-        onClick={() => onChange("uz")}
-        aria-pressed={lang === "uz"}
-        className={`relative z-10 flex-1 cursor-pointer rounded-full px-6 py-2 text-sm font-semibold transition-colors duration-200 ${lang === "uz" ? "text-navy" : "text-white/75 hover:text-white"
-          }`}
-      >
+    <div  role="group"  aria-label="Til tanlash"  className={`relative flex rounded-full border border-white/15 bg-white/10 p-1 ${full ? "w-full" : ""}`}  >
+      <span  aria-hidden="true"  className={`absolute inset-y-1 left-1 w-[calc(50%-4px)] rounded-full bg-white transition-transform duration-300 ease-out ${lang === "ru" ? "translate-x-full" : "translate-x-0"  }`}  />
+      <button  type="button"  onClick={() => onChange("uz")}  aria-pressed={lang === "uz"}  className={`relative z-10 flex-1 cursor-pointer rounded-full px-6 py-2 text-sm font-semibold transition-colors duration-200 ${lang === "uz" ? "text-navy" : "text-white/75 hover:text-white"  }`}  >
         Lotin
       </button>
-      <button
-        type="button"
-        onClick={() => onChange("ru")}
-        aria-pressed={lang === "ru"}
-        className={`relative z-10 flex-1 cursor-pointer rounded-full px-6 py-2 text-sm font-semibold transition-colors duration-200 ${lang === "ru" ? "text-navy" : "text-white/75 hover:text-white"
-          }`}
-      >
+      <button  type="button"  onClick={() => onChange("ru")}  aria-pressed={lang === "ru"}  className={`relative z-10 flex-1 cursor-pointer rounded-full px-6 py-2 text-sm font-semibold transition-colors duration-200 ${lang === "ru" ? "text-navy" : "text-white/75 hover:text-white"  }`}  >
         Кирил
       </button>
     </div>
