@@ -21,17 +21,17 @@ const FAQ_ITEMS: FaqItem[] = [
   {
     question: "Guruhlar necha kishidan iborat?",
     answer:
-      "Har bir o'quvchiga individual e'tibor qaratish uchun guruhlar kichik tarkibda shakllantiriladi. Aniq joylar soni haqida ma'lumotni bog'lanish orqali ustozlarimizdan olishingiz mumkin.",
+      "Har bir o'quvchiga individual e'tibor qaratish uchun guruhlar kichik tarkibda shakllantiriladi. Aniq joylar soni haqida ma'lumotni bog'lanish orqali xodimlarimizdan olishingiz mumkin.",
   },
   {
     question: "Kurs necha oy davom etadi va narxi qancha?",
     answer:
-      "Kurs davomiyligi va narxi tanlangan yo'nalishga qarab farq qiladi. Aniq muddat va to'lov shartlari bo'yicha \"Kursga yozilish\" tugmasini bosib ma'lumot qoldiring — ustozlarimiz siz bilan bog'lanib, batafsil tushuntirib berishadi.",
+      "Kurs davomiyligi va narxi tanlangan yo'nalishga qarab farq qiladi. Aniq muddat va to'lov shartlari bo'yicha \"Kursga yozilish\" tugmasini bosib ma'lumot qoldiring — xodimlarimiz siz bilan bog'lanib, batafsil tushuntirib berishadi.",
   },
   {
     question: "Yozilish uchun nima qilishim kerak?",
     answer:
-      "Sahifadagi istalgan \"Kursga yozilish\" tugmasini bosing, ism va telefon raqamingizni qoldiring. Ustozlarimiz tez orada siz bilan bog'lanib, guruhga qo'shilish tafsilotlarini aytib berishadi.",
+      "Sahifadagi istalgan \"Kursga yozilish\" tugmasini bosing, ism va telefon raqamingizni qoldiring. Xodimlarimiz tez orada siz bilan bog'lanib, guruhga qo'shilish tafsilotlarini aytib berishadi.",
   },
   {
     question: "O'quv markazlari qayerda joylashgan?",
@@ -58,7 +58,7 @@ const Savollar = () => {
               Savolingizga javob topa olmadingizmi?
             </h2>
             <p className="mt-1.5 text-sm text-slate-500 sm:text-base">
-              Ustozlarimiz bilan bevosita bog&apos;laning, barcha savollaringizga javob berishadi.
+              Xodimlarimiz bilan bevosita bog&apos;laning, barcha savollaringizga javob berishadi.
             </p>
           </div>
           <a
