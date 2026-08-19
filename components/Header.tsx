@@ -5,8 +5,8 @@ import Link from "next/link"
 import Image from "next/image"
 import BurgerMenuIcon from "@/images/icons/burger-menu.svg"
 import LogoImage from "@/images/logo.jpg"
-
-type Lang = "uz" | "ru"
+import LangSelect, { type Lang } from "@/components/LangSelect"
+import { useEnrollModal } from "@/contexts/EnrollModalContext"
 
 const NAV_LINKS = [
   { href: "/", label: "Bosh sahifa" },
@@ -20,6 +20,7 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false)
   const [lang, setLang] = useState<Lang>("uz")
   const [scrolled, setScrolled] = useState(false)
+  const { open: openEnrollModal } = useEnrollModal()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
@@ -61,8 +62,11 @@ const Header = () => {
         </nav>
 
         <div className="hidden items-center gap-4 lg:flex">
-          <LangToggle lang={lang} onChange={setLang} />
-          <button className="cursor-pointer rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-navy transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent hover:shadow-(--shadow-card)">
+          <LangSelect lang={lang} onChange={setLang} />
+          <button
+            onClick={() => openEnrollModal()}
+            className="cursor-pointer rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-navy transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent hover:shadow-(--shadow-card)"
+          >
             Kursga yozilish
           </button>
         </div>
@@ -86,8 +90,14 @@ const Header = () => {
             </ul>
 
             <div className="mt-3 flex flex-col gap-3 border-t border-white/10 pt-4">
-              <LangToggle lang={lang} onChange={setLang} full />
-              <button className="w-full cursor-pointer rounded-xl bg-white px-5 py-3 font-semibold text-navy transition-colors duration-200 hover:bg-accent">
+              <LangSelect lang={lang} onChange={setLang} full />
+              <button
+                onClick={() => {
+                  setMenuOpen(false)
+                  openEnrollModal()
+                }}
+                className="w-full cursor-pointer rounded-xl bg-white px-5 py-3 font-semibold text-navy transition-colors duration-200 hover:bg-accent"
+              >
                 Kursga yozilish
               </button>
             </div>
@@ -95,26 +105,6 @@ const Header = () => {
         </div>
       </div>
     </header>
-  )
-}
-
-type LangToggleProps = {
-  lang: Lang
-  onChange: (lang: Lang) => void
-  full?: boolean
-}
-
-const LangToggle = ({ lang, onChange, full }: LangToggleProps) => {
-  return (
-    <div  role="group"  aria-label="Til tanlash"  className={`relative flex rounded-full border border-white/15 bg-white/10 p-1 ${full ? "w-full" : ""}`}  >
-      <span  aria-hidden="true"  className={`absolute inset-y-1 left-1 w-[calc(50%-4px)] rounded-full bg-white transition-transform duration-300 ease-out ${lang === "ru" ? "translate-x-full" : "translate-x-0"  }`}  />
-      <button  type="button"  onClick={() => onChange("uz")}  aria-pressed={lang === "uz"}  className={`relative z-10 flex-1 cursor-pointer rounded-full px-6 py-2 text-sm font-semibold transition-colors duration-200 ${lang === "uz" ? "text-navy" : "text-white/75 hover:text-white"  }`}  >
-        Lotin
-      </button>
-      <button  type="button"  onClick={() => onChange("ru")}  aria-pressed={lang === "ru"}  className={`relative z-10 flex-1 cursor-pointer rounded-full px-6 py-2 text-sm font-semibold transition-colors duration-200 ${lang === "ru" ? "text-navy" : "text-white/75 hover:text-white"  }`}  >
-        Кирил
-      </button>
-    </div>
   )
 }
 

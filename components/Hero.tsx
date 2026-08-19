@@ -1,9 +1,14 @@
+"use client"
+
 import Image from "next/image"
 import HeroImage from "@/images/hero-img.webp"
 import Reveal from "@/components/Reveal"
 import BrandLetterMark from "@/components/decor/BrandLetterMark"
+import { useEnrollModal } from "@/contexts/EnrollModalContext"
 
 const Hero = () => {
+  const { open: openEnrollModal } = useEnrollModal()
+
   return (
     <section className="relative overflow-hidden bg-navy px-5 py-16 text-white sm:py-20 lg:py-24">
 
@@ -41,7 +46,10 @@ const Hero = () => {
 
           {/* Button */}
           <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-            <button className="  min-w-50  cursor-pointer rounded-full  bg-navy  px-8 py-4 text-base  font-semibold  text-white shadow-[0_8px_24px_rgba(15,23,42,0.22)] transition-all  duration-200 hover:-translate-y-1  hover:bg-accent  hover:shadow-[0_12px_30px_rgba(15,23,42,0.28)] sm:text-lg  "  >
+            <button
+              onClick={() => openEnrollModal()}
+              className="  min-w-50  cursor-pointer rounded-full  bg-navy  px-8 py-4 text-base  font-semibold  text-white shadow-[0_8px_24px_rgba(15,23,42,0.22)] transition-all  duration-200 hover:-translate-y-1  hover:bg-accent  hover:shadow-[0_12px_30px_rgba(15,23,42,0.28)] sm:text-lg  "
+            >
               Kurslarga yozilish
             </button>
           </div>

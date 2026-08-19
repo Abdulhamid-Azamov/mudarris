@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import EnrollModal from "@/components/EnrollModal";
+import { EnrollModalProvider } from "@/contexts/EnrollModalContext";
 import { Cairo } from "next/font/google";
 
 const cairo = Cairo({
@@ -30,9 +32,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="uz" className={`${geistSans.variable} ${geistMono.variable} ${cairo.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col bg-white">
-        <Header />
-        {children}
-        <Footer />
+        <EnrollModalProvider>
+          <Header />
+          {children}
+          <Footer />
+          <EnrollModal />
+        </EnrollModalProvider>
       </body>
     </html>
   );
