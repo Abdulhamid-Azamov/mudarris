@@ -2,17 +2,16 @@
 
 /*
   Design tokens.
-  Palette is unchanged from the brand: navy (#183463) and white were already
-  used across the UI; gold/yellow (#E5E200) already existed in the logo and
-  in the decorative "harf" letter artwork + hero photo, it just wasn't wired
-  up as a CSS token yet.
 */
+
 @theme {
   --color-navy: #183463;
   --color-navy-deep: #101f3d;
   --color-navy-soft: #eef1f8;
+
   --color-accent: #e5e200;
   --color-accent-deep: #c7c400;
+
   --color-ink: #16233f;
 
   --font-display: var(--font-cairo), "Cairo", ui-sans-serif, sans-serif;
@@ -24,29 +23,86 @@
 
 html {
   scroll-behavior: smooth;
+
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #183463 transparent;
 }
 
 body {
   color: var(--color-ink);
 }
 
+
+/* Chrome / Edge / Safari */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Scrollbar background */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    #183463 0%,
+    #244b87 50%,
+    #183463 100%
+  );
+
+  border-radius: 999px;
+
+  /* thumb atrofida ozgina bo'sh joy */
+  border: 1px solid transparent;
+  background-clip: padding-box;
+
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* Hover qilganda */
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    #244b87 0%,
+    #183463 50%,
+    #244b87 100%
+  );
+
+  box-shadow:
+    0 0 8px rgb(24 52 99 / 0.45),
+    0 0 18px rgb(24 52 99 / 0.2);
+}
+
+/* ========================================
+   CONTAINERS
+======================================== */
+
 .containers {
   max-width: 1400px;
   width: 100%;
   margin: 30px auto;
 }
+
 .centralize {
   width: 100%;
   margin: 0 auto;
 }
 
-/* Scroll-reveal animation used by the <Reveal> component. Kept subtle and
-   applied selectively, not on every element. */
+/* ========================================
+   SCROLL REVEAL
+======================================== */
+
 @keyframes reveal-up {
   from {
     opacity: 0;
     transform: translateY(28px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -58,6 +114,7 @@ body {
     opacity: 0;
     transform: translateY(8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);

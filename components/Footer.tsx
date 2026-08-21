@@ -59,39 +59,21 @@ const InstagramIcon = ({ className = "" }: { className?: string }) => (
 
 const TelegramIcon = ({ className = "" }: { className?: string }) => (
   <svg viewBox="0 0 24 24" fill="none" className={className}>
-    <path
-      d="M21 4L3 11.5L9.5 13.5M21 4L15.5 20L9.5 13.5M21 4L9.5 13.5"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
+    <path d="M21 4L3 11.5L9.5 13.5M21 4L15.5 20L9.5 13.5M21 4L9.5 13.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 )
 
 const YoutubeIcon = ({ className = "" }: { className?: string }) => (
   <svg viewBox="0 0 24 24" fill="none" className={className}>
-    <rect
-      x="3"
-      y="6"
-      width="18"
-      height="12"
-      rx="4"
-      stroke="currentColor"
-      strokeWidth="1.6"
-    />
-    <path
-      d="M10.5 9.5L15 12L10.5 14.5V9.5Z"
-      fill="currentColor"
-    />
+    <rect x="3" y="6" width="18" height="12" rx="4" stroke="currentColor" strokeWidth="1.6" />
+    <path d="M10.5 9.5L15 12L10.5 14.5V9.5Z" fill="currentColor" />
   </svg>
 )
 
 const QUICK_LINKS = [
   { href: "/", label: "Bosh sahifa" },
-  { href: "/courses", label: "Kurslar" },
+  { href: "/#courses", label: "Kurslar" },
   { href: "/about", label: "Biz haqimizda" },
-  { href: "/locations", label: "Joylashuvlarimiz" },
 ]
 
 const SOCIALS = [
@@ -105,25 +87,14 @@ const Footer = () => {
 
   return (
     <footer className="relative overflow-hidden bg-navy text-white">
-      <BrandLetterMark
-        variant="cluster"
-        className="pointer-events-none absolute -bottom-20 -right-14 h-56 w-56 text-white/[0.035] sm:h-72 sm:w-72"
-      />
+      <BrandLetterMark variant="cluster" className="pointer-events-none absolute -bottom-20 -right-14 h-56 w-56 text-white/[0.035] sm:h-72 sm:w-72" />
 
       <Reveal className="relative mx-auto max-w-7xl px-5 py-10 sm:py-12 lg:py-14">
         <div className="grid grid-cols-1 gap-9 sm:grid-cols-2 lg:grid-cols-4 lg:gap-12">
-
-          {/* Logo */}
           <div>
             <Link href="/" className="inline-flex items-center gap-3">
               <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg ring-1 ring-white/10">
-                <Image
-                  src={LogoImage}
-                  alt="Mudarris Akademiyasi"
-                  fill
-                  sizes="40px"
-                  className="object-cover"
-                />
+                <Image src={LogoImage} alt="Mudarris Akademiyasi" fill sizes="40px" className="object-cover" />
               </span>
 
               <span className="font-display text-base font-bold uppercase leading-tight">
@@ -138,10 +109,7 @@ const Footer = () => {
               qulay akademiya.
             </p>
 
-            <Link
-              href="/contact"
-              className="mt-5 inline-flex items-center text-sm font-semibold text-accent transition-transform duration-200 hover:translate-x-1"
-            >
+            <Link href="/contact" className="mt-5 inline-flex items-center text-sm font-semibold text-accent transition-transform duration-200 hover:translate-x-1"  >
               Batafsil ma&apos;lumot
               <span className="ml-2">→</span>
             </Link>
@@ -156,10 +124,7 @@ const Footer = () => {
             <ul className="mt-4 flex flex-col gap-2.5 text-sm text-white/55">
               {QUICK_LINKS.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="transition-colors duration-200 hover:text-accent"
-                  >
+                  <Link href={link.href} className="transition-colors duration-200 hover:text-accent"  >
                     {link.label}
                   </Link>
                 </li>
@@ -174,27 +139,13 @@ const Footer = () => {
             </h3>
 
             <div className="mt-4 flex flex-col gap-3">
-              <a
-                href="tel:+998781137353"
-                className="group flex items-center gap-3 text-sm text-white/65 transition-colors duration-200 hover:text-accent"
-              >
+              <a href="tel:+998781137353" className="group flex items-center gap-3 text-sm text-white/65 transition-colors duration-200 hover:text-accent"  >
                 <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/[0.07] text-accent transition-colors group-hover:bg-accent/10">
                   <PhoneIcon className="h-4 w-4" />
                 </span>
 
                 <span>+998 78 113 73 53</span>
               </a>
-
-              <Link
-                href="/locations"
-                className="group flex items-center gap-3 text-sm text-white/65 transition-colors duration-200 hover:text-accent"
-              >
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/[0.07] text-accent transition-colors group-hover:bg-accent/10">
-                  <LocationIcon className="h-4 w-4" />
-                </span>
-
-                <span>Joylashuvlarimiz</span>
-              </Link>
             </div>
           </div>
 
@@ -207,16 +158,10 @@ const Footer = () => {
             <ul className="mt-4 flex flex-col gap-2.5">
               {SOCIALS.map((social) => (
                 <li key={social.label}>
-                  <a
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex items-center gap-3 text-sm text-white/60 transition-colors duration-200 hover:text-accent"
-                  >
+                  <a href={social.href} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 text-sm text-white/60 transition-colors duration-200 hover:text-accent"  >
                     <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/[0.07] text-white/70 transition-all duration-200 group-hover:bg-accent/10 group-hover:text-accent">
                       <social.icon className="h-4 w-4" />
                     </span>
-
                     {social.label}
                   </a>
                 </li>

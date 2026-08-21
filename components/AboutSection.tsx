@@ -5,6 +5,7 @@ import type { PointerEvent as ReactPointerEvent } from "react"
 import Image from "next/image"
 import AboutImage from "@/images/about-image.webp"
 import Reveal from "@/components/Reveal"
+import Link from "next/link"
 
 
 const SLIDES = [
@@ -109,9 +110,9 @@ const AboutSection = () => {
               ))}
             </dl>
 
-            <button className="w-full cursor-pointer rounded-full bg-white px-10 py-4 text-base font-semibold text-navy transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent hover:shadow-(--shadow-card) sm:w-auto sm:px-20 sm:text-lg">
+            <Link href="/about" className="w-full cursor-pointer rounded-full bg-white px-10 py-4 text-base font-semibold text-navy transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent hover:shadow-(--shadow-card) sm:w-auto sm:px-20 sm:text-lg">
               Batafsil
-            </button>
+            </Link>
           </div>
         </div>
       </Reveal>
