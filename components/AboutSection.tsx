@@ -73,7 +73,7 @@ const AboutSection = () => {
         <div className="flex flex-col items-center gap-8 rounded-[20px] bg-navy p-6 sm:p-8 md:flex-row md:items-center md:gap-10 md:p-10">
           <div className="w-full md:w-[42%] md:max-w-105">
             <div className="relative touch-pan-y select-none overflow-hidden rounded-[18px] cursor-grab active:cursor-grabbing" onPointerDown={handlePointerDown} onPointerMove={handlePointerMove} onPointerUp={endDrag} onPointerLeave={endDrag} onPointerCancel={endDrag} >
-              <div className={`flex ${isDragging ? "" : "transition-transform duration-500 ease-out"}`}  style={{ transform: `translateX(calc(-${index * 100}% + ${dragOffset}px))` }} >
+              <div className={`flex ${isDragging ? "" : "transition-transform duration-500 ease-out"}`} style={{ transform: `translateX(calc(-${index * 100}% + ${dragOffset}px))` }} >
                 {SLIDES.map((slide) => (
                   <div key={slide.alt} className="relative h-55 w-full shrink-0 sm:h-65">
                     <Image src={AboutImage} alt={slide.alt} fill draggable={false} sizes="(min-width: 768px) 420px, 100vw" className="object-cover" />
@@ -110,7 +110,7 @@ const AboutSection = () => {
               ))}
             </dl>
 
-            <Link href="/about" className="w-full cursor-pointer rounded-full bg-white px-10 py-4 text-base font-semibold text-navy transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent hover:shadow-(--shadow-card) sm:w-auto sm:px-20 sm:text-lg">
+            <Link href="/about" className=" inline-flex w-full items-center justify-center rounded-full  bg-white px-8 py-3.5 text-sm font-semibold  text-navy transition-all duration-300 hover:-translate-y-0.5  hover:bg-accent hover:shadow-(--shadow-card) active:scale-[0.98] sm:w-auto sm:min-w-44 sm:px-8 sm:py-4  sm:text   ">
               Batafsil
             </Link>
           </div>
