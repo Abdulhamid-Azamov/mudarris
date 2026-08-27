@@ -10,9 +10,12 @@ import AboutImage2 from "@/images/mudarris-beruniy.jpg"
 import AboutImage3 from "@/images/mudarris-algoritm.jpg"
 import AboutImage4 from "@/images/mudarris-qiyot.jpg"
 import AboutImage5 from "@/images/mudarris-qoyliq.jpg"
+import AboutImage6 from "@/images/mudarris-ibnsino.jpg"
+import AboutImage7 from "@/images/mudarris-kattaqani.jpg"
 
 
 import Reveal from "@/components/Reveal"
+import { useT } from "@/hook/useT"
 
 const SLIDES = [
   {
@@ -34,7 +37,16 @@ const SLIDES = [
   {
     image: AboutImage5,
     alt: "Mudarris akademiyasi — 5-surat",
+  },
+  {
+    image: AboutImage6,
+    alt: "Mudarris akademiyasi — 6-surat",
+  },
+  {
+    image: AboutImage7,
+    alt: "Mudarris akademiyasi — 7-surat",
   }
+  
 ]
 
 const FACTS = [
@@ -61,6 +73,7 @@ const AboutSection = () => {
   const [isDragging, setIsDragging] = useState(false)
 
   const startXRef = useRef(0)
+  const t = useT()
 
   const total = SLIDES.length
 
@@ -122,11 +135,11 @@ const AboutSection = () => {
       {/* SECTION TITLE */}
       <Reveal className="text-center">
         <span className="text-xs font-semibold uppercase tracking-[0.2em] text-navy/50 sm:text-sm">
-          Akademiya haqida
+          {t("Akademiya haqida")}
         </span>
 
         <h2 className="mt-3 font-display text-[28px] font-bold text-navy sm:text-[34px] md:text-[40px]">
-          Biz haqimizda
+          {t("Biz haqimizda")}
         </h2>
       </Reveal>
 
@@ -168,7 +181,7 @@ const AboutSection = () => {
                   >
                     <Image
                       src={slide.image}
-                      alt={slide.alt}
+                      alt={t(slide.alt)}
                       fill
                       draggable={false}
                       sizes="(min-width: 768px) 420px, 100vw"
@@ -203,7 +216,7 @@ const AboutSection = () => {
               <button
                 type="button"
                 onClick={() => goTo(index - 1)}
-                aria-label="Oldingi rasm"
+                aria-label={t("Oldingi rasm")}
                 className="absolute left-2 top-1/2 z-10 hidden h-9 w-9 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-white/90 text-navy transition-all duration-200 hover:bg-white hover:scale-105 sm:flex"
               >
                 <ChevronIcon direction="left" />
@@ -216,7 +229,7 @@ const AboutSection = () => {
               <button
                 type="button"
                 onClick={() => goTo(index + 1)}
-                aria-label="Keyingi rasm"
+                aria-label={t("Keyingi rasm")}
                 className="absolute right-2 top-1/2 z-10 hidden h-9 w-9 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-white/90 text-navy transition-all duration-200 hover:bg-white hover:scale-105 sm:flex"
               >
                 <ChevronIcon direction="right" />
@@ -230,25 +243,21 @@ const AboutSection = () => {
 
           <div className="flex w-full flex-1 flex-col items-start gap-8 md:max-w-135">
             <p className="text-base leading-[170%] text-white/85 sm:text-lg">
-              Mudarris Akademiyasi 2021-yilda asos solingan bo&apos;lib,
-              4 yildan buyon o&apos;z faoliyatini olib bormoqda. Shu
-              vaqtgacha 10000 dan ortiq insonlar Mudarris akademiyasida
-              arab tilini o&apos;rgandi. Mudarris akademiyasida 3 yildan
-              10 yilgacha tajribaga ega ustozlar mavjud.
+              {t("Mudarris Akademiyasi 2021-yilda asos solingan bo'lib, 4 yildan buyon o'z faoliyatini olib bormoqda. Shu vaqtgacha 10000 dan ortiq insonlar Mudarris akademiyasida arab tilini o'rgandi. Mudarris akademiyasida 3 yildan 10 yilgacha tajribaga ega ustozlar mavjud.")}
             </p>
 
             {/* FACTS */}
             <dl className="grid w-full grid-cols-3 gap-3 border-t border-white/10 pt-6 sm:gap-6">
               {FACTS.map((fact) => (
                 <div key={fact.label}>
-                  <dt className="sr-only">{fact.label}</dt>
+                  <dt className="sr-only">{t(fact.label)}</dt>
 
                   <dd className="font-display text-lg font-bold text-accent sm:text-2xl">
                     {fact.value}
                   </dd>
 
                   <dd className="mt-1 text-[11px] text-white/65 sm:text-sm">
-                    {fact.label}
+                    {t(fact.label)}
                   </dd>
                 </div>
               ))}
@@ -259,7 +268,7 @@ const AboutSection = () => {
               href="/about"
               className="inline-flex w-full items-center justify-center rounded-full bg-white px-8 py-3.5 text-sm font-semibold text-navy transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent hover:shadow-(--shadow-card) active:scale-[0.98] sm:w-auto sm:min-w-44 sm:px-8 sm:py-4 sm:text-base"
             >
-              Batafsil
+              {t("Batafsil")}
             </Link>
           </div>
         </div>

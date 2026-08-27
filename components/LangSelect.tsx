@@ -1,13 +1,9 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import type { Lang } from "@/contexts/LangContext"
 
-export type Lang = "uz" | "ru"
-
-const LANG_OPTIONS: { value: Lang; label: string; short: string }[] = [
-  { value: "uz", label: "Lotin", short: "UZ" },
-  { value: "ru", label: "Kirill", short: "РУ" },
-]
+export type { Lang }
 
 type LangSelectProps = {
   lang: Lang
@@ -15,90 +11,93 @@ type LangSelectProps = {
   full?: boolean
 }
 
-const LangSelect = ({ lang, onChange, full }: LangSelectProps) => {
+const OPTIONS: { value: Lang; badge: string; label: string }[] = [
+  { value: "uz", badge: "UZ", label: "Lotin" },
+  { value: "uz-cyrl", badge: "РУ", label: "Kirill" },
+]
+
+const LangSelect = ({ lang, onChange, full = false }: LangSelectProps) => {
   const [open, setOpen] = useState(false)
-  const rootRef = useRef<HTMLDivElement | null>(null)
-  const current = LANG_OPTIONS.find((o) => o.value === lang) ?? LANG_OPTIONS[0]
+  const ref = useRef<HTMLDivElement>(null)
+
+  const current = OPTIONS.find((o) => o.value === lang) ?? OPTIONS[0]
 
   useEffect(() => {
-    if (!open) return
     const onClickOutside = (e: MouseEvent) => {
-      if (rootRef.current && !rootRef.current.contains(e.target as Node)) {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
         setOpen(false)
       }
     }
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false)
-    }
     document.addEventListener("mousedown", onClickOutside)
-    window.addEventListener("keydown", onKeyDown)
-    return () => {
-      document.removeEventListener("mousedown", onClickOutside)
-      window.removeEventListener("keydown", onKeyDown)
-    }
-  }, [open])
+    return () => document.removeEventListener("mousedown", onClickOutside)
+  }, [])
 
   return (
-    <div ref={rootRef} className={`relative ${full ? "w-full" : ""}`}>
+    <div ref={ref} className={`relative ${full ? "w-full" : ""}`}>
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
         aria-haspopup="listbox"
         aria-expanded={open}
-        className={`flex cursor-pointer items-center justify-between gap-2.5 rounded-full border border-white/15 bg-white/10 py-2.5 pl-4 pr-3 text-sm font-semibold text-white transition-colors duration-200 hover:border-white/25 hover:bg-white/15 ${full ? "w-full" : "min-w-31"}`}
+        className={`flex items-center gap-2 rounded-full bg-white/10 py-2 pl-2 pr-3 text-sm font-semibold text-white transition-colors duration-200 hover:bg-white/20 ${full ? "w-full justify-between" : ""}`}
       >
         <span className="flex items-center gap-2">
-          <span className="flex h-5 w-8 items-center justify-center rounded-full bg-accent text-[11px] font-bold tracking-wide text-navy">
-            {current.short}
+          <span className="rounded-full bg-accent px-2 py-0.5 text-xs font-bold text-navy">
+            {current.badge}
           </span>
-          {current.label}
+          <span>{current.label}</span>
         </span>
         <svg
-          viewBox="0 0 24 24"
+          className={`h-3.5 w-3.5 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+          viewBox="0 0 12 8"
           fill="none"
-          className={`h-4 w-4 shrink-0 text-white/60 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
         >
-          <path d="m6 9 6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </button>
 
-      <ul
-        role="listbox"
-        className={`absolute z-20 mt-2 w-full min-w-40 origin-top overflow-hidden rounded-2xl border border-navy/10 bg-white p-1.5 shadow-[0_18px_45px_rgba(16,31,61,0.22)] transition-all duration-150 ${
-          open ? "pointer-events-auto scale-100 opacity-100" : "pointer-events-none scale-95 opacity-0"
-        } ${full ? "left-0 right-0" : "right-0"}`}
-      >
-        {LANG_OPTIONS.map((option) => (
-          <li key={option.value}>
-            <button
-              type="button"
-              role="option"
-              aria-selected={lang === option.value}
-              onClick={() => {
-                onChange(option.value)
-                setOpen(false)
-              }}
-              className={`flex w-full cursor-pointer items-center gap-2.5 rounded-xl px-3 py-2.5 text-left text-sm font-semibold transition-colors duration-150 ${
-                lang === option.value ? "bg-navy-soft text-navy" : "text-slate-500 hover:bg-navy-soft/60 hover:text-navy"
-              }`}
-            >
-              <span
-                className={`flex h-5 w-8 items-center justify-center rounded-full text-[11px] font-bold tracking-wide ${
-                  lang === option.value ? "bg-accent text-navy" : "bg-slate-100 text-slate-400"
-                }`}
-              >
-                {option.short}
-              </span>
-              {option.label}
-              {lang === option.value && (
-                <svg viewBox="0 0 24 24" fill="none" className="ml-auto h-4 w-4 text-accent-deep">
-                  <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              )}
-            </button>
-          </li>
-        ))}
-      </ul>
+      {open && (
+        <ul
+          role="listbox"
+          className="absolute right-0 z-50 mt-2 w-44 overflow-hidden rounded-2xl bg-white py-1 shadow-(--shadow-card)"
+        >
+          {OPTIONS.map((option) => {
+            const isActive = option.value === lang
+            return (
+              <li key={option.value}>
+                <button
+                  type="button"
+                  role="option"
+                  aria-selected={isActive}
+                  onClick={() => {
+                    onChange(option.value)
+                    setOpen(false)
+                  }}
+                  className={`flex w-full items-center justify-between gap-3 px-4 py-2.5 text-left text-sm font-semibold transition-colors duration-150 ${
+                    isActive ? "bg-navy/5 text-navy" : "text-navy/60 hover:bg-navy/5"
+                  }`}
+                >
+                  <span className="flex items-center gap-2">
+                    <span
+                      className={`rounded-full px-2 py-0.5 text-xs font-bold ${
+                        isActive ? "bg-accent text-navy" : "bg-navy/10 text-navy/50"
+                      }`}
+                    >
+                      {option.badge}
+                    </span>
+                    {option.label}
+                  </span>
+                  {isActive && (
+                    <svg className="h-4 w-4 text-accent" viewBox="0 0 16 16" fill="none">
+                      <path d="M3 8.5L6.5 12L13 4.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  )}
+                </button>
+              </li>
+            )
+          })}
+        </ul>
+      )}
     </div>
   )
 }

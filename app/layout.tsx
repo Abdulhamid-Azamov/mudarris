@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import EnrollModal from "@/components/EnrollModal";
 import { EnrollModalProvider } from "@/contexts/EnrollModalContext";
 import { Cairo } from "next/font/google";
+import { LangProvider } from "@/contexts/LangContext";
 
 const cairo = Cairo({
   subsets: ["arabic", "latin"],
@@ -33,9 +34,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="uz" className={`${geistSans.variable} ${geistMono.variable} ${cairo.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col bg-white">
         <EnrollModalProvider>
-          <Header />
-          {children}
-          <Footer />
+          <LangProvider>
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </LangProvider>
           <EnrollModal />
         </EnrollModalProvider>
       </body>

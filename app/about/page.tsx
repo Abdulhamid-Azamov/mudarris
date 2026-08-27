@@ -19,7 +19,7 @@ const FACTS = [
     label: "asos solingan yil",
   },
   {
-    value: "2500+",
+    value: "10000+",
     label: "bitirgan o'quvchi",
   },
   {
@@ -87,7 +87,7 @@ const BRANCHES: Branch[] = [
   },
 ]
 
-const AUTO_SLIDE_INTERVAL = 5000
+const AUTO_SLIDE_INTERVAL = 3000
 
 const About = () => {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -202,11 +202,7 @@ const About = () => {
           HERO
       ====================================================== */}
 
-      <PageHero
-        eyebrow="Akademiya"
-        title="Biz haqimizda"
-        description="Mudarris Akademiyasi — arab tilini noldan puxta o'rgatuvchi, tajribali ustozlar va zamonaviy metodikaga asoslangan ta'lim markazi."
-      />
+      <PageHero eyebrow="Akademiya" title="Biz haqimizda" description="Mudarris Akademiyasi — arab tilini noldan puxta o'rgatuvchi, tajribali ustozlar va zamonaviy metodikaga asoslangan ta'lim markazi." />
 
       {/* =====================================================
           AKADEMIYA HAQIDA
@@ -225,8 +221,8 @@ const About = () => {
 
             <p className="mx-auto max-w-4xl text-base leading-relaxed text-navy/75 sm:text-lg md:text-xl">
               Mudarris Akademiyasi 2021-yilda asos solingan bo&apos;lib,
-              4 yildan buyon o&apos;z faoliyatini olib bormoqda. Shu
-              vaqtgacha 2500 dan ortiq insonlar Mudarris Akademiyasida arab
+              5 yildan buyon o&apos;z faoliyatini olib bormoqda. Shu
+              vaqtgacha 10000 dan ortiq insonlar Akademiyamizda arab
               tilini o&apos;rgandi. Akademiyamizda 3 yildan 10 yilgacha
               tajribaga ega ustozlar mavjud bo&apos;lib, ayollar, bolalar va
               kattalar uchun alohida yo&apos;nalishlar bo&apos;yicha kurslar
@@ -238,15 +234,9 @@ const About = () => {
               FACT CARDS
           ================================================== */}
 
-          <Reveal
-            delay={100}
-            className="grid w-full grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-5"
-          >
+          <Reveal delay={100} className="grid w-full grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-5" >
             {FACTS.map((fact, index) => (
-              <div
-                key={fact.label}
-                className="group relative overflow-hidden rounded-2xl border border-navy/6 bg-slate-50/70 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:bg-white hover:shadow-lg sm:p-7"
-              >
+              <div key={fact.label} className="group relative overflow-hidden rounded-2xl border border-navy/6 bg-slate-50/70 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:bg-white hover:shadow-lg sm:p-7"  >
                 {/* Glow */}
 
                 <div className="pointer-events-none absolute -right-10 -top-10 h-24 w-24 rounded-full bg-accent/10 blur-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -340,16 +330,12 @@ const About = () => {
                 <div
                   className="flex transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
                   style={{
-                    transform: `translateX(-${
-                      currentSlide * slideWidth
-                    }%)`,
+                    transform: `translateX(-${currentSlide * slideWidth
+                      }%)`,
                   }}
                 >
                   {BRANCHES.map((branch) => (
-                    <div
-                      key={branch.id}
-                      className="w-full shrink-0 px-1.5 sm:w-1/2 sm:px-2 lg:w-1/3"
-                    >
+                    <div key={branch.id} className="w-full shrink-0 px-1.5 sm:w-1/2 sm:px-2 lg:w-1/3"   >
                       {/* =====================================
                           CARD
                       ====================================== */}
@@ -442,14 +428,7 @@ const About = () => {
 
                           {/* Phone */}
 
-                          <a
-                            href={`tel:${branch.phone.replace(
-                              /\s+/g,
-                              ""
-                            )}`}
-                            aria-label={`${branch.name} telefon raqami`}
-                            className="group/phone flex items-center gap-3 rounded-xl bg-slate-50 p-3 transition-all duration-300 hover:bg-accent/10"
-                          >
+                          <a href={`tel:${branch.phone.replace(/\s+/g, "")}`} aria-label={`${branch.name} telefon raqami`} className="group/phone flex items-center gap-3 rounded-xl bg-slate-50 p-3 transition-all duration-300 hover:bg-accent/10"  >
                             <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-navy text-white transition-all duration-300 group-hover/phone:bg-accent group-hover/phone:text-navy">
                               <PhoneIcon className="h-4.5 w-4.5" />
                             </div>
@@ -479,41 +458,7 @@ const About = () => {
                   PREVIOUS ARROW
               ================================================== */}
 
-              <button
-                type="button"
-                onClick={goToPrevious}
-                aria-label="Oldingi filiallar"
-                className="
-                  absolute
-                  left-0
-                  top-1/2
-                  z-20
-                  flex
-                  h-9
-                  w-9
-                  -translate-y-1/2
-                  items-center
-                  justify-center
-                  rounded-full
-                  border
-                  border-navy/10
-                  bg-white/95
-                  text-navy
-                  shadow-lg
-                  backdrop-blur-sm
-                  transition-all
-                  duration-300
-                  hover:scale-110
-                  hover:bg-accent
-                  active:scale-95
-                  sm:left-0
-                  sm:h-11
-                  sm:w-11
-                  sm:-translate-x-1/2
-                  lg:h-12
-                  lg:w-12
-                "
-              >
+              <button type="button" onClick={goToPrevious} aria-label="Oldingi filiallar" className="  absolute  left-0  top-1/2  z-20  flex  h-9  w-9  -translate-y-1/2  items-center  justify-center  rounded-full  border  border-navy/10  bg-white/95  text-navy  shadow-lg  backdrop-blur-sm  transition-all  duration-300  hover:scale-110  hover:bg-accent  active:scale-95  sm:left-0  sm:h-11  sm:w-11  sm:-translate-x-1/2  lg:h-12  lg:w-12  "  >
                 <ChevronIcon direction="left" />
               </button>
 
@@ -521,41 +466,7 @@ const About = () => {
                   NEXT ARROW
               ================================================== */}
 
-              <button
-                type="button"
-                onClick={goToNext}
-                aria-label="Keyingi filiallar"
-                className="
-                  absolute
-                  right-0
-                  top-1/2
-                  z-20
-                  flex
-                  h-9
-                  w-9
-                  -translate-y-1/2
-                  items-center
-                  justify-center
-                  rounded-full
-                  border
-                  border-navy/10
-                  bg-white/95
-                  text-navy
-                  shadow-lg
-                  backdrop-blur-sm
-                  transition-all
-                  duration-300
-                  hover:scale-110
-                  hover:bg-accent
-                  active:scale-95
-                  sm:right-0
-                  sm:h-11
-                  sm:w-11
-                  sm:translate-x-1/2
-                  lg:h-12
-                  lg:w-12
-                "
-              >
+              <button type="button" onClick={goToNext} aria-label="Keyingi filiallar" className="  absolute  right-0  top-1/2  z-20  flex  h-9  w-9  -translate-y-1/2  items-center  justify-center  rounded-full  border  border-navy/10  bg-white/95  text-navy  shadow-lg  backdrop-blur-sm  transition-all  duration-300  hover:scale-110  hover:bg-accent  active:scale-95  sm:right-0  sm:h-11  sm:w-11  sm:translate-x-1/2  lg:h-12  lg:w-12  "  >
                 <ChevronIcon direction="right" />
               </button>
             </div>
@@ -565,21 +476,8 @@ const About = () => {
             ================================================== */}
 
             <div className="mt-8 flex items-center justify-center gap-2">
-              {Array.from({
-                length: maxSlide + 1,
-              }).map((_, index) => (
-                <button
-                  key={index}
-                  type="button"
-                  onClick={() => setCurrentSlide(index)}
-                  aria-label={`${index + 1}-slaydga o'tish`}
-                  className={`h-1.5 rounded-full transition-all duration-500 ${
-                    currentSlide === index
-                      ? "w-8 bg-accent"
-                      : "w-1.5 bg-white/30 hover:bg-white/60"
-                  }`}
-                />
-              ))}
+              {Array.from({ length: maxSlide + 1, }).map((_, index) => (
+                <button key={index} type="button" onClick={() => setCurrentSlide(index)} aria-label={`${index + 1}-slaydga o'tish`} className={`h-1.5 rounded-full transition-all duration-500 ${currentSlide === index ? "w-8 bg-accent" : "w-1.5 bg-white/30 hover:bg-white/60"}`} />))}
             </div>
 
             {/* =================================================
@@ -642,9 +540,8 @@ const ChevronIcon = ({
   <svg
     viewBox="0 0 24 24"
     fill="none"
-    className={`h-5 w-5 ${
-      direction === "right" ? "rotate-180" : ""
-    }`}
+    className={`h-5 w-5 ${direction === "right" ? "rotate-180" : ""
+      }`}
     aria-hidden="true"
   >
     <path

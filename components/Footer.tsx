@@ -1,8 +1,11 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
-import LogoImage from "@/images/logo.jpg"
+import LogoImage from "@/images/logosite.png"
 import Reveal from "@/components/Reveal"
 import BrandLetterMark from "@/components/decor/BrandLetterMark"
+import { useT } from "@/hook/useT"
 
 /* =========================
    ICONS
@@ -156,17 +159,17 @@ const QUICK_LINKS = [
 const SOCIALS = [
   {
     label: "Instagram",
-    href: "#",
+    href: "https://www.instagram.com/mudarris_akademiyasi?utm_source=ig_web_button_share_sheet&igsi=ZDNlZDc0MzIxNw==",
     icon: InstagramIcon,
   },
   {
     label: "Telegram",
-    href: "#",
+    href: "https://t.me/mudarris_akademiyasi",
     icon: TelegramIcon,
   },
   {
     label: "YouTube",
-    href: "#",
+    href: "https://youtube.com/@mudarris_akademiyasi?si=4dp1RHLrKLUk3qiZ",
     icon: YoutubeIcon,
   },
 ]
@@ -177,6 +180,7 @@ const SOCIALS = [
 
 const Footer = () => {
   const year = new Date().getFullYear()
+  const t = useT()
 
   return (
     <footer className="relative overflow-hidden bg-navy text-white">
@@ -208,34 +212,24 @@ const Footer = () => {
               href="/"
               className="group inline-flex items-center gap-3"
             >
-              <span className="relative h-11 w-11 shrink-0 overflow-hidden rounded-xl ring-1 ring-white/10 transition-all duration-300 group-hover:ring-accent/40">
-                <Image
-                  src={LogoImage}
-                  alt="Mudarris Akademiyasi"
-                  fill
-                  sizes="44px"
-                  className="object-cover"
-                />
-              </span>
-
-              <span className="font-display text-base font-black uppercase leading-[0.95] tracking-tight">
-                Mudarris
-                <br />
-                Akademiyasi
-              </span>
+              <Image
+                src={LogoImage}
+                alt="Logo"
+                width={200}
+                height={150}
+                className="transition-transform duration-300 group-hover:-translate-y-0.5"
+              />
             </Link>
 
             <p className="mt-5 max-w-xs text-sm leading-6 text-white/50">
-              Arab tilini tajribali ustozlardan o&apos;rganing.
-              Zamonaviy metodika, qulay muhit va natijaga
-              yo&apos;naltirilgan ta&apos;lim.
+              {t("Arab tilini tajribali ustozlardan o'rganing. Zamonaviy metodika, qulay muhit va natijaga yo'naltirilgan ta'lim.")}
             </p>
 
             <Link
               href="/contact"
               className="group mt-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/4 px-4 py-2.5 text-xs font-bold text-white/80 transition-all duration-300 hover:border-accent/30 hover:bg-accent hover:text-navy"
             >
-              <span>Bog&apos;lanish</span>
+              <span>{t("Bog'lanish")}</span>
 
               <ArrowIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
             </Link>
@@ -247,7 +241,7 @@ const Footer = () => {
 
           <div>
             <h3 className="font-display text-xs font-bold uppercase tracking-[0.18em] text-white/90">
-              Sahifalar
+              {t("Sahifalar")}
             </h3>
 
             <ul className="mt-5 grid grid-cols-2 gap-x-5 gap-y-3 lg:grid-cols-1">
@@ -259,7 +253,7 @@ const Footer = () => {
                   >
                     <span className="h-px w-0 bg-accent transition-all duration-200 group-hover:w-3" />
 
-                    {link.label}
+                    {t(link.label)}
                   </Link>
                 </li>
               ))}
@@ -272,7 +266,7 @@ const Footer = () => {
 
           <div>
             <h3 className="font-display text-xs font-bold uppercase tracking-[0.18em] text-white/90">
-              Aloqa
+              {t("Aloqa")}
             </h3>
 
             <div className="mt-5 space-y-4">
@@ -287,7 +281,7 @@ const Footer = () => {
 
                 <span>
                   <span className="block text-[10px] font-semibold uppercase tracking-wider text-white/30">
-                    Telefon
+                    {t("Telefon")}
                   </span>
 
                   <span className="mt-0.5 block text-sm font-semibold text-white/75 transition-colors group-hover:text-accent">
@@ -304,11 +298,11 @@ const Footer = () => {
 
                 <span>
                   <span className="block text-[10px] font-semibold uppercase tracking-wider text-white/30">
-                    Manzil
+                    {t("Manzil")}
                   </span>
 
                   <span className="mt-0.5 block text-sm font-medium text-white/60">
-                    Toshkent shahri
+                    {t("Toshkent shahri")}
                   </span>
                 </span>
               </div>
@@ -321,11 +315,11 @@ const Footer = () => {
 
           <div>
             <h3 className="font-display text-xs font-bold uppercase tracking-[0.18em] text-white/90">
-              Ijtimoiy tarmoqlar
+              {t("Ijtimoiy tarmoqlar")}
             </h3>
 
             <p className="mt-5 max-w-55 text-sm leading-5 text-white/45">
-              Yangiliklar va foydali ma&apos;lumotlarni kuzatib boring.
+              {t("Yangiliklar va foydali ma'lumotlarni kuzatib boring.")}
             </p>
 
             <div className="mt-5 flex flex-wrap gap-2">
@@ -352,11 +346,11 @@ const Footer = () => {
         <div className="mt-9 border-t border-white/[0.07] pt-5">
           <div className="flex flex-col gap-2 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
             <p className="text-[11px] text-white/30 sm:text-xs">
-              © {year} Mudarris Akademiyasi. Barcha huquqlar himoyalangan.
+              © {year} {t("Mudarris Akademiyasi. Barcha huquqlar himoyalangan.")}
             </p>
 
             <p className="text-[11px] text-white/20 sm:text-xs">
-              Ta&apos;lim bilan kelajak sari.
+              {t("Ta'lim bilan kelajak sari.")}
             </p>
           </div>
         </div>

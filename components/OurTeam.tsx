@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image"
 import FirstMember from "@/images/1-member.svg"
 import SecondMember from "@/images/2-member.svg"
@@ -6,8 +8,11 @@ import FourthMember from "@/images/4-member.svg"
 import FifthMember from "@/images/5-member.svg"
 
 import Reveal from "@/components/Reveal"
+import { useT } from "@/hook/useT"
 
 const OurTeam = () => {
+    const t = useT()
+
     const teamMembers = [
         { image: FirstMember, name: "Yo'ldoshbek Ibrohim" },
         { image: SecondMember, name: "Hamidulloh Najmiddinov" },
@@ -20,11 +25,11 @@ const OurTeam = () => {
         <section className="containers px-5 py-10 sm:py-14">
             <Reveal className="text-center">
                 <span className="text-xs font-semibold uppercase tracking-[0.2em] text-navy/50 sm:text-sm">
-                    Ustozlarimiz
+                    {t("Ustozlarimiz")}
                 </span>
 
                 <h2 className="mt-3 font-display text-[28px] font-bold text-navy sm:text-[34px] md:text-[40px]">
-                    Bizning jamoa
+                    {t("Bizning jamoa")}
                 </h2>
             </Reveal>
 

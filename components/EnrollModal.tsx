@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { useEnrollModal } from "@/contexts/EnrollModalContext"
+import { useT } from "@/hook/useT"
 
 const EnrollModal = () => {
   const { isOpen, courseName, close } = useEnrollModal()
@@ -13,6 +14,7 @@ const EnrollModal = () => {
 
   const dialogRef = useRef<HTMLDivElement | null>(null)
   const nameInputRef = useRef<HTMLInputElement | null>(null)
+  const t = useT()
 
   // Reset state when modal opens
   if (isOpen !== prevIsOpen) {
@@ -101,7 +103,7 @@ const EnrollModal = () => {
 
       if (!response.ok) {
         throw new Error(
-          data.message || "Ariza yuborishda xatolik yuz berdi."
+          data.message || t("Ariza yuborishda xatolik yuz berdi.")
         )
       }
 
@@ -112,7 +114,7 @@ const EnrollModal = () => {
       setError(
         error instanceof Error
           ? error.message
-          : "Ariza yuborishda xatolik yuz berdi."
+          : t("Ariza yuborishda xatolik yuz berdi.")
       )
     } finally {
       setIsSubmitting(false)
@@ -142,7 +144,7 @@ const EnrollModal = () => {
         <button
           type="button"
           onClick={close}
-          aria-label="Yopish"
+          aria-label={t("Yopish")}
           className="absolute right-4 top-4 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-slate-100 text-slate-500 transition-colors duration-200 hover:bg-slate-200 hover:text-navy sm:right-5 sm:top-5"
         >
           <svg
@@ -163,25 +165,24 @@ const EnrollModal = () => {
           <>
             {/* Header */}
             <div className="pr-10">
-              <span className="inline-flex items-center gap-2 rounded-full bg-accent/15 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.1em] text-navy">
+              <span className="inline-flex items-center gap-2 rounded-full bg-accent/15 px-3.5 py-1.5 text-xs font-bold uppercase tracking-widest text-navy">
                 <span className="h-1.5 w-1.5 rounded-full bg-accent-deep" />
-                Kursga yozilish
+                {t("Kursga yozilish")}
               </span>
 
               <h2
                 id="enroll-modal-title"
                 className="mt-4 text-2xl font-extrabold leading-tight tracking-tight text-navy sm:text-[2rem]"
               >
-                {courseName ?? "Bepul konsultatsiya"}
+                {courseName ?? t("Bepul konsultatsiya")}
 
                 <span className="mt-1 block text-accent-deep sm:text-[1.4rem]">
-                  olish uchun yozing
+                  {t("olish uchun yozing")}
                 </span>
               </h2>
 
               <p className="mt-3 max-w-90 text-sm leading-relaxed text-slate-500">
-                Ism va telefon raqamingizni qoldiring,
-                ustozlarimiz siz bilan tez orada bog&apos;lanadi.
+                {t("Ism va telefon raqamingizni qoldiring, ustozlarimiz siz bilan tez orada bog'lanadi.")}
               </p>
             </div>
 
@@ -196,7 +197,7 @@ const EnrollModal = () => {
                   htmlFor="enroll-name"
                   className="mb-2 block text-sm font-semibold text-slate-700"
                 >
-                  Ism-familiya
+                  {t("Ism-familiya")}
                   <span className="ml-1 text-red-500">*</span>
                 </label>
 
@@ -207,8 +208,8 @@ const EnrollModal = () => {
                   type="text"
                   required
                   autoComplete="name"
-                  placeholder="Ismingizni kiriting"
-                  className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-base text-slate-800 outline-none transition-all duration-200 placeholder:text-slate-400 hover:border-slate-300 focus:border-[#183463] focus:bg-white focus:ring-4 focus:ring-[#183463]/8"
+                  placeholder={t("Ismingizni kiriting")}
+                  className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-base text-slate-800 outline-none transition-all duration-200 placeholder:text-slate-400 hover:border-slate-300 focus:border-navy focus:bg-white focus:ring-4 focus:ring-navy/8"
                 />
               </div>
 
@@ -218,11 +219,11 @@ const EnrollModal = () => {
                   htmlFor="enroll-phone"
                   className="mb-2 block text-sm font-semibold text-slate-700"
                 >
-                  Telefon raqam
+                  {t("Telefon raqam")}
                   <span className="ml-1 text-red-500">*</span>
                 </label>
 
-                <div className="flex items-center rounded-2xl border border-slate-200 bg-slate-50 transition-all duration-200 focus-within:border-[#183463] focus-within:bg-white focus-within:ring-4 focus-within:ring-[#183463]/8 hover:border-slate-300">
+                <div className="flex items-center rounded-2xl border border-slate-200 bg-slate-50 transition-all duration-200 focus-within:border-navy focus-within:bg-white focus-within:ring-4 focus-within:ring-navy/8 hover:border-slate-300">
                   <span className="border-r border-slate-200 px-4 text-sm font-semibold text-slate-500">
                     +998
                   </span>
@@ -254,8 +255,8 @@ const EnrollModal = () => {
                 className="group mt-1 flex w-full cursor-pointer items-center justify-center gap-2 rounded-2xl bg-accent/80 px-4 py-4 text-base font-bold text-white shadow-[0_12px_25px_rgba(50,209,168,0.28)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent hover:shadow-[0_16px_30px_rgba(50,209,168,0.35)] active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {isSubmitting
-                  ? "Yuborilmoqda..."
-                  : "Yuborish"}
+                  ? t("Yuborilmoqda...")
+                  : t("Yuborish")}
 
                 {!isSubmitting && (
                   <svg
@@ -283,7 +284,7 @@ const EnrollModal = () => {
               {/* Alternative contact */}
               <div className="flex items-center justify-center gap-1.5 text-xs text-slate-400">
                 <span>
-                  Yoki qo&apos;ng&apos;iroq qiling:
+                  {t("Yoki qo'ng'iroq qiling:")}
                 </span>
 
                 <a
@@ -315,12 +316,11 @@ const EnrollModal = () => {
             </span>
 
             <h2 className="mt-5 text-xl font-extrabold text-navy sm:text-2xl">
-              Arizangiz qabul qilindi!
+              {t("Arizangiz qabul qilindi!")}
             </h2>
 
             <p className="mt-3 max-w-80 text-sm leading-relaxed text-slate-500">
-              Tez orada xodimlarimiz siz bilan
-              ko&apos;rsatilgan raqam orqali bog&apos;lanishadi.
+              {t("Tez orada xodimlarimiz siz bilan ko'rsatilgan raqam orqali bog'lanishadi.")}
             </p>
 
             <button
@@ -328,7 +328,7 @@ const EnrollModal = () => {
               onClick={close}
               className="mt-7 w-full cursor-pointer rounded-2xl bg-navy px-4 py-3.5 text-base font-bold text-white transition-colors duration-200 hover:bg-navy-deep"
             >
-              Yopish
+              {t("Yopish")}
             </button>
           </div>
         )}
