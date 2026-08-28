@@ -17,7 +17,7 @@ const PageHero = ({ eyebrow, title, description, children }: PageHeroProps) => {
         className="pointer-events-none absolute -right-12 -top-16 h-56 w-56 text-accent/10 sm:h-72 sm:w-72"
       />
 
-      <Reveal className="relative mx-auto max-w-7xl rounded-[24px] border border-white/10 bg-white/10 p-6 shadow-[var(--shadow-soft)] sm:p-8 md:p-10">
+      <Reveal className="relative mx-auto max-w-7xl rounded-3xl border border-white/10 bg-white/10 p-6 shadow-(--shadow-soft) sm:p-8 md:p-10">
         <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent sm:text-sm">
           {eyebrow}
         </span>

@@ -1,11 +1,13 @@
 "use client"
 
 import { useState } from "react"
+import { useT } from "@/hook/useT"
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState("")
+  const t = useT()
 
   const handleSubmit = async (
     e: React.FormEvent<HTMLFormElement>
@@ -42,7 +44,7 @@ const Contact = () => {
       if (!response.ok) {
         throw new Error(
           data.message ||
-            "Ariza yuborishda xatolik yuz berdi."
+            t("Ariza yuborishda xatolik yuz berdi.")
         )
       }
 
@@ -54,7 +56,7 @@ const Contact = () => {
       setError(
         error instanceof Error
           ? error.message
-          : "Ariza yuborishda xatolik yuz berdi."
+          : t("Ariza yuborishda xatolik yuz berdi.")
       )
     } finally {
       setIsSubmitting(false)
@@ -89,23 +91,23 @@ const Contact = () => {
             <div className="mb-6 inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/6 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-accent backdrop-blur-md">
               <span className="h-2 w-2 rounded-full bg-accent shadow-[0_0_10px_rgba(50,209,168,0.8)]" />
 
-              Kurslarga qabul ochiq
+              {t("Kurslarga qabul ochiq")}
             </div>
 
             {/* Heading */}
             <h1 className="max-w-140 text-4xl font-black uppercase leading-[0.98] tracking-[-0.045em] text-white sm:text-5xl lg:text-[3.7rem] xl:text-[4.1rem]">
-              Kurslarimizga
+              {t("Kurslarimizga")}
 
               <span className="mt-2 block text-accent sm:mt-3 lg:mt-4">
-                hoziroq yoziling
+                {t("hoziroq yoziling")}
               </span>
             </h1>
 
             {/* Description */}
             <p className="mt-7 max-w-120 text-base leading-relaxed text-white/70 sm:text-lg">
-              Arab tilini tajribali ustozlardan o&apos;rganing.
-              Kurslarimiz haqida batafsil ma&apos;lumot olish
-              uchun ma&apos;lumotlaringizni qoldiring.
+              {t(
+                "Arab tilini tajribali ustozlardan o'rganing. Kurslarimiz haqida batafsil ma'lumot olish uchun ma'lumotlaringizni qoldiring."
+              )}
             </p>
 
             {/* Contact phone */}
@@ -129,7 +131,7 @@ const Contact = () => {
 
               <div>
                 <p className="text-xs font-medium text-white/45">
-                  Biz bilan bog&apos;laning
+                  {t("Biz bilan bog'laning")}
                 </p>
 
                 <a
@@ -152,15 +154,15 @@ const Contact = () => {
                 {/* Header */}
                 <div>
                   <h2 className="text-2xl font-extrabold leading-tight tracking-tight text-navy sm:text-[2rem]">
-                    Bog&apos;lanish uchun
+                    {t("Bog'lanish uchun")}
 
                     <span className="block text-accent sm:text-[2.1rem] lg:text-[2.2rem]">
-                      ma&apos;lumot qoldiring
+                      {t("ma'lumot qoldiring")}
                     </span>
                   </h2>
 
                   <p className="mt-3 max-w-90 text-sm leading-relaxed text-slate-500">
-                    Ism va telefon raqamingizni kiriting.
+                    {t("Ism va telefon raqamingizni kiriting.")}
                   </p>
                 </div>
 
@@ -172,7 +174,7 @@ const Contact = () => {
                       htmlFor="name"
                       className="mb-2 block text-sm font-semibold text-slate-700"
                     >
-                      Ism-familiya
+                      {t("Ism-familiya")}
 
                       <span className="ml-1 text-red-500">
                         *
@@ -185,7 +187,7 @@ const Contact = () => {
                       type="text"
                       required
                       autoComplete="name"
-                      placeholder="Ismingizni kiriting"
+                      placeholder={t("Ismingizni kiriting")}
                       className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-base text-slate-800 outline-none transition-all duration-200 placeholder:text-slate-400 hover:border-slate-300 focus:border-[#183463] focus:bg-white focus:ring-4 focus:ring-[#183463]/8"
                     />
                   </div>
@@ -196,7 +198,7 @@ const Contact = () => {
                       htmlFor="phone"
                       className="mb-2 block text-sm font-semibold text-slate-700"
                     >
-                      Telefon raqam
+                      {t("Telefon raqam")}
 
                       <span className="ml-1 text-red-500">
                         *
@@ -232,8 +234,7 @@ const Contact = () => {
                 {/* Success */}
                 {submitted && (
                   <div className="rounded-2xl bg-accent/10 px-4 py-3 text-sm font-semibold text-accent-deep">
-                    Arizangiz qabul qilindi! Tez orada
-                    siz bilan bog&apos;lanamiz.
+                    {t("Arizangiz qabul qilindi! Tez orada siz bilan bog'lanamiz.")}
                   </div>
                 )}
 
@@ -244,10 +245,10 @@ const Contact = () => {
                   className="group mt-1 flex w-full cursor-pointer items-center justify-center gap-2 rounded-2xl bg-accent/80 px-4 py-4 text-base font-bold text-white shadow-[0_12px_25px_rgba(50,209,168,0.28)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent hover:shadow-[0_16px_30px_rgba(50,209,168,0.35)] active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {isSubmitting
-                    ? "Yuborilmoqda..."
+                    ? t("Yuborilmoqda...")
                     : submitted
-                      ? "Yuborildi"
-                      : "Ro'yxatdan o'tish"}
+                      ? t("Yuborildi")
+                      : t("Ro'yxatdan o'tish")}
 
                   {!isSubmitting && !submitted && (
                     <svg
@@ -276,7 +277,7 @@ const Contact = () => {
                 {/* Alternative contact */}
                 <div className="flex items-center justify-center gap-1.5 text-xs text-slate-400">
                   <span>
-                    Yoki qo&apos;ng&apos;iroq qiling:
+                    {t("Yoki qo'ng'iroq qiling:")}
                   </span>
 
                   <a

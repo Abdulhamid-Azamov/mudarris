@@ -174,7 +174,7 @@ const EnrollModal = () => {
                 id="enroll-modal-title"
                 className="mt-4 text-2xl font-extrabold leading-tight tracking-tight text-navy sm:text-[2rem]"
               >
-                {courseName ?? t("Bepul konsultatsiya")}
+                {courseName ? t(courseName) : t("Bepul konsultatsiya")}
 
                 <span className="mt-1 block text-accent-deep sm:text-[1.4rem]">
                   {t("olish uchun yozing")}

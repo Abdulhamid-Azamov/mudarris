@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import Link from "next/link"
 import PageHero from "@/components/PageHero"
 import Reveal from "@/components/Reveal"
+import { useT } from "@/hook/useT"
 
 type Branch = {
   id: number
@@ -92,6 +93,7 @@ const AUTO_SLIDE_INTERVAL = 3000
 const About = () => {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [itemsPerView, setItemsPerView] = useState(3)
+  const t = useT()
 
   /* =========================================================
      RESPONSIVE CARD COUNT
@@ -202,7 +204,13 @@ const About = () => {
           HERO
       ====================================================== */}
 
-      <PageHero eyebrow="Akademiya" title="Biz haqimizda" description="Mudarris Akademiyasi — arab tilini noldan puxta o'rgatuvchi, tajribali ustozlar va zamonaviy metodikaga asoslangan ta'lim markazi." />
+      <PageHero
+        eyebrow={t("Akademiya")}
+        title={t("Biz haqimizda")}
+        description={t(
+          "Mudarris Akademiyasi — arab tilini noldan puxta o'rgatuvchi, tajribali ustozlar va zamonaviy metodikaga asoslangan ta'lim markazi."
+        )}
+      />
 
       {/* =====================================================
           AKADEMIYA HAQIDA
@@ -215,18 +223,14 @@ const About = () => {
               <span className="h-1.5 w-1.5 rounded-full bg-accent" />
 
               <span className="text-xs font-bold uppercase tracking-[0.18em] text-navy/60 sm:text-sm">
-                Biz haqimizda
+                {t("Biz haqimizda")}
               </span>
             </div>
 
             <p className="mx-auto max-w-4xl text-base leading-relaxed text-navy/75 sm:text-lg md:text-xl">
-              Mudarris Akademiyasi 2021-yilda asos solingan bo&apos;lib,
-              5 yildan buyon o&apos;z faoliyatini olib bormoqda. Shu
-              vaqtgacha 10000 dan ortiq insonlar Akademiyamizda arab
-              tilini o&apos;rgandi. Akademiyamizda 3 yildan 10 yilgacha
-              tajribaga ega ustozlar mavjud bo&apos;lib, ayollar, bolalar va
-              kattalar uchun alohida yo&apos;nalishlar bo&apos;yicha kurslar
-              tashkil etilgan.
+              {t(
+                "Mudarris Akademiyasi 2021-yilda asos solingan bo'lib, 5 yildan buyon o'z faoliyatini olib bormoqda. Shu vaqtgacha 10000 dan ortiq insonlar Akademiyamizda arab tilini o'rgandi. Akademiyamizda 3 yildan 10 yilgacha tajribaga ega ustozlar mavjud bo'lib, ayollar, bolalar va kattalar uchun alohida yo'nalishlar bo'yicha kurslar tashkil etilgan."
+              )}
             </p>
           </Reveal>
 
@@ -250,7 +254,7 @@ const About = () => {
                 </p>
 
                 <p className="relative mt-2 text-xs font-semibold uppercase tracking-wider text-navy/50 sm:text-sm">
-                  {fact.label}
+                  {t(fact.label)}
                 </p>
 
                 <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-accent transition-all duration-300 group-hover:w-full" />
@@ -296,20 +300,21 @@ const About = () => {
               </span>
 
               <span className="text-xs font-bold uppercase tracking-[0.18em] text-accent sm:text-sm">
-                Filiallarimiz
+                {t("Filiallarimiz")}
               </span>
             </div>
 
             <h2 className="mt-6 font-display text-3xl font-black leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
-              Sizga yaqin filialni
+              {t("Sizga yaqin filialni")}
               <span className="block text-accent">
-                tanlang
+                {t("tanlang")}
               </span>
             </h2>
 
             <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-white/60 sm:text-base lg:text-lg">
-              Toshkentning turli hududlarida joylashgan filiallarimizda
-              arab tilini qulay va zamonaviy muhitda o&apos;rganing.
+              {t(
+                "Toshkentning turli hududlarida joylashgan filiallarimizda arab tilini qulay va zamonaviy muhitda o'rganing."
+              )}
             </p>
           </Reveal>
 
@@ -358,7 +363,7 @@ const About = () => {
                             <span className="h-px w-8 bg-navy/10" />
 
                             <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-accent sm:text-xs">
-                              Filial
+                              {t("Filial")}
                             </span>
                           </div>
 
@@ -372,7 +377,7 @@ const About = () => {
                             </span>
 
                             <span className="text-[9px] font-bold uppercase tracking-wider text-emerald-600">
-                              Ochiq
+                              {t("Ochiq")}
                             </span>
                           </div>
                         </div>
@@ -383,11 +388,11 @@ const About = () => {
 
                         <div className="relative mt-6">
                           <h3 className="font-display text-2xl font-black leading-tight tracking-tight text-navy transition-colors duration-300 group-hover:text-accent sm:text-[1.7rem]">
-                            {branch.name}
+                            {t(branch.name)}
                           </h3>
 
                           <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.15em] text-navy/30">
-                            Mudarris Akademiyasi
+                            {t("Mudarris Akademiyasi")}
                           </p>
                         </div>
 
@@ -396,7 +401,7 @@ const About = () => {
                         ================================== */}
 
                         <p className="relative mt-5 min-h-18 text-sm leading-6 text-navy/60">
-                          {branch.description}
+                          {t(branch.description)}
                         </p>
 
                         {/* Divider */}
@@ -417,25 +422,25 @@ const About = () => {
 
                             <div className="min-w-0">
                               <p className="text-[10px] font-bold uppercase tracking-widest text-navy/35">
-                                Manzil
+                                {t("Manzil")}
                               </p>
 
                               <p className="mt-0.5 text-sm font-medium leading-5 text-navy/75">
-                                {branch.address}
+                                {t(branch.address)}
                               </p>
                             </div>
                           </div>
 
                           {/* Phone */}
 
-                          <a href={`tel:${branch.phone.replace(/\s+/g, "")}`} aria-label={`${branch.name} telefon raqami`} className="group/phone flex items-center gap-3 rounded-xl bg-slate-50 p-3 transition-all duration-300 hover:bg-accent/10"  >
+                          <a href={`tel:${branch.phone.replace(/\s+/g, "")}`} aria-label={t(`${branch.name} telefon raqami`)} className="group/phone flex items-center gap-3 rounded-xl bg-slate-50 p-3 transition-all duration-300 hover:bg-accent/10"  >
                             <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-navy text-white transition-all duration-300 group-hover/phone:bg-accent group-hover/phone:text-navy">
                               <PhoneIcon className="h-4.5 w-4.5" />
                             </div>
 
                             <div className="min-w-0">
                               <p className="text-[10px] font-bold uppercase tracking-widest text-navy/35">
-                                Telefon
+                                {t("Telefon")}
                               </p>
 
                               <p className="mt-0.5 text-sm font-semibold text-navy transition-colors group-hover/phone:text-accent">
@@ -458,7 +463,7 @@ const About = () => {
                   PREVIOUS ARROW
               ================================================== */}
 
-              <button type="button" onClick={goToPrevious} aria-label="Oldingi filiallar" className="  absolute  left-0  top-1/2  z-20  flex  h-9  w-9  -translate-y-1/2  items-center  justify-center  rounded-full  border  border-navy/10  bg-white/95  text-navy  shadow-lg  backdrop-blur-sm  transition-all  duration-300  hover:scale-110  hover:bg-accent  active:scale-95  sm:left-0  sm:h-11  sm:w-11  sm:-translate-x-1/2  lg:h-12  lg:w-12  "  >
+              <button type="button" onClick={goToPrevious} aria-label={t("Oldingi filiallar")} className="  absolute  left-0  top-1/2  z-20  flex  h-9  w-9  -translate-y-1/2  items-center  justify-center  rounded-full  border  border-navy/10  bg-white/95  text-navy  shadow-lg  backdrop-blur-sm  transition-all  duration-300  hover:scale-110  hover:bg-accent  active:scale-95  sm:left-0  sm:h-11  sm:w-11  sm:-translate-x-1/2  lg:h-12  lg:w-12  "  >
                 <ChevronIcon direction="left" />
               </button>
 
@@ -466,7 +471,7 @@ const About = () => {
                   NEXT ARROW
               ================================================== */}
 
-              <button type="button" onClick={goToNext} aria-label="Keyingi filiallar" className="  absolute  right-0  top-1/2  z-20  flex  h-9  w-9  -translate-y-1/2  items-center  justify-center  rounded-full  border  border-navy/10  bg-white/95  text-navy  shadow-lg  backdrop-blur-sm  transition-all  duration-300  hover:scale-110  hover:bg-accent  active:scale-95  sm:right-0  sm:h-11  sm:w-11  sm:translate-x-1/2  lg:h-12  lg:w-12  "  >
+              <button type="button" onClick={goToNext} aria-label={t("Keyingi filiallar")} className="  absolute  right-0  top-1/2  z-20  flex  h-9  w-9  -translate-y-1/2  items-center  justify-center  rounded-full  border  border-navy/10  bg-white/95  text-navy  shadow-lg  backdrop-blur-sm  transition-all  duration-300  hover:scale-110  hover:bg-accent  active:scale-95  sm:right-0  sm:h-11  sm:w-11  sm:translate-x-1/2  lg:h-12  lg:w-12  "  >
                 <ChevronIcon direction="right" />
               </button>
             </div>
@@ -477,7 +482,7 @@ const About = () => {
 
             <div className="mt-8 flex items-center justify-center gap-2">
               {Array.from({ length: maxSlide + 1, }).map((_, index) => (
-                <button key={index} type="button" onClick={() => setCurrentSlide(index)} aria-label={`${index + 1}-slaydga o'tish`} className={`h-1.5 rounded-full transition-all duration-500 ${currentSlide === index ? "w-8 bg-accent" : "w-1.5 bg-white/30 hover:bg-white/60"}`} />))}
+                <button key={index} type="button" onClick={() => setCurrentSlide(index)} aria-label={t(`${index + 1}-slaydga o'tish`)} className={`h-1.5 rounded-full transition-all duration-500 ${currentSlide === index ? "w-8 bg-accent" : "w-1.5 bg-white/30 hover:bg-white/60"}`} />))}
             </div>
 
             {/* =================================================
@@ -485,7 +490,7 @@ const About = () => {
             ================================================== */}
 
             <p className="mt-4 text-center text-xs text-white/35">
-              Har 5 soniyada avtomatik o&apos;tadi
+              {t("Har 5 soniyada avtomatik o'tadi")}
             </p>
           </Reveal>
 
@@ -501,7 +506,7 @@ const About = () => {
               href="/contact"
               className="group inline-flex w-full items-center justify-center gap-3 rounded-full bg-accent px-7 py-3.5 font-display text-sm font-bold text-navy shadow-[0_10px_30px_rgba(229,226,0,0.15)] transition-all duration-300 hover:scale-[1.03] hover:bg-white hover:shadow-[0_15px_40px_rgba(255,255,255,0.12)] active:scale-95 sm:w-auto sm:px-9 sm:py-4 sm:text-base"
             >
-              <span>Kurslarga yozilish</span>
+              <span>{t("Kurslarga yozilish")}</span>
 
               <svg
                 viewBox="0 0 20 20"

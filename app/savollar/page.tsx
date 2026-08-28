@@ -1,8 +1,11 @@
+"use client"
+
 import PageHero from "@/components/PageHero"
 import FaqAccordion from "@/components/FaqAccordion"
 import type { FaqItem } from "@/components/FaqAccordion"
+import { useT } from "@/hook/useT"
 
-const FAQ_ITEMS: FaqItem[] = [
+const FAQ_ITEMS_RAW: FaqItem[] = [
   {
     question: "Kurslarga kimlar yozilishi mumkin?",
     answer:
@@ -41,24 +44,35 @@ const FAQ_ITEMS: FaqItem[] = [
 ]
 
 const Savollar = () => {
+  const t = useT()
+
+  // FaqAccordion o'ziga tayyor matn qabul qiladi, shuning uchun
+  // savol/javoblarni shu yerda, komponentga uzatishdan oldin o'giramiz.
+  const faqItems: FaqItem[] = FAQ_ITEMS_RAW.map((item) => ({
+    question: t(item.question),
+    answer: t(item.answer),
+  }))
+
   return (
     <main className="bg-navy-soft/40">
       <PageHero
-        eyebrow="Yordam"
-        title="Ko'p beriladigan savollar"
-        description="Kurslarimiz, o'quv jarayoni va yozilish tartibi haqida eng ko'p beriladigan savollarga javoblarni shu yerdan topasiz."
+        eyebrow={t("Yordam")}
+        title={t("Ko'p beriladigan savollar")}
+        description={t(
+          "Kurslarimiz, o'quv jarayoni va yozilish tartibi haqida eng ko'p beriladigan savollarga javoblarni shu yerdan topasiz."
+        )}
       />
 
       <section className="px-5 py-16 sm:py-20 lg:py-24">
-        <FaqAccordion items={FAQ_ITEMS} />
+        <FaqAccordion items={faqItems} />
 
         <div className="mx-auto mt-14 flex w-full max-w-3xl flex-col items-center gap-4 rounded-3xl border border-navy/10 bg-white px-6 py-8 text-center shadow-(--shadow-card) sm:flex-row sm:justify-between sm:text-left">
           <div>
             <h2 className="font-display text-lg font-extrabold text-navy sm:text-xl">
-              Savolingizga javob topa olmadingizmi?
+              {t("Savolingizga javob topa olmadingizmi?")}
             </h2>
             <p className="mt-1.5 text-sm text-slate-500 sm:text-base">
-              Xodimlarimiz bilan bevosita bog&apos;laning, barcha savollaringizga javob berishadi.
+              {t("Xodimlarimiz bilan bevosita bog'laning, barcha savollaringizga javob berishadi.")}
             </p>
           </div>
           <a
