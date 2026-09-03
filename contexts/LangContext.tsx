@@ -4,34 +4,44 @@ import { createContext, useContext, useEffect, useState } from "react"
 
 export type Lang = "uz" | "uz-cyrl"
 
-const LangContext = createContext<{
+type LangContextType = {
   lang: Lang
-  setLang: (l: Lang) => void
-}>({
+  setLang: (lang: Lang) => void
+}
+
+const LangContext = createContext<LangContextType>({
   lang: "uz",
   setLang: () => {},
 })
 
-export function LangProvider({ children }: { children: React.ReactNode }) {
+export function LangProvider({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   const [lang, setLang] = useState<Lang>("uz")
 
   useEffect(() => {
-    // localStorage faqat clientda mavjud, shuning uchun
-    // uni SSR vaqtida o'qimaslik kerak.
-    const saved = localStorage.getItem("lang") as Lang | null
+    const saved = localStorage.getItem("lang")
 
-    if (saved) {
+    if (saved === "uz" || saved === "uz-cyrl") {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setLang(saved)
     }
   }, [])
 
-  const update = (l: Lang) => {
-    setLang(l)
-    localStorage.setItem("lang", l)
+  const updateLang = (newLang: Lang) => {
+    setLang(newLang)
+    localStorage.setItem("lang", newLang)
   }
 
   return (
-    <LangContext.Provider value={{ lang, setLang: update }}>
+    <LangContext.Provider
+      value={{
+        lang,
+        setLang: updateLang,
+      }}
+    >
       {children}
     </LangContext.Provider>
   )

@@ -58,7 +58,6 @@ export async function POST(request: Request) {
       createdAt: new Date().toISOString(),
     }
 
-    // Hozircha test uchun
     console.log("================================")
     console.log("NEW LEAD")
     console.log(lead)

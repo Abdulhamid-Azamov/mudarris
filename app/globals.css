@@ -1,17 +1,11 @@
 @import "tailwindcss";
 
-/*
-  Design tokens.
-*/
-
 @theme {
   --color-navy: #183463;
   --color-navy-deep: #101f3d;
   --color-navy-soft: #eef1f8;
-
   --color-accent: #e5e200;
   --color-accent-deep: #c7c400;
-
   --color-ink: #16233f;
 
   --font-display: var(--font-cairo), "Cairo", ui-sans-serif, sans-serif;
@@ -24,7 +18,6 @@
 html {
   scroll-behavior: smooth;
 
-  /* Firefox */
   scrollbar-width: thin;
   scrollbar-color: #183463 transparent;
 }
@@ -33,18 +26,16 @@ body {
   color: var(--color-ink);
 }
 
-
 /* Chrome / Edge / Safari */
+
 ::-webkit-scrollbar {
   width: 6px;
 }
 
-/* Scrollbar background */
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 
-/* Scrollbar thumb */
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(
     180deg,
@@ -54,8 +45,6 @@ body {
   );
 
   border-radius: 999px;
-
-  /* thumb atrofida ozgina bo'sh joy */
   border: 1px solid transparent;
   background-clip: padding-box;
 
@@ -64,7 +53,6 @@ body {
     box-shadow 0.3s ease;
 }
 
-/* Hover qilganda */
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(
     180deg,
