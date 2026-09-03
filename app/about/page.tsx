@@ -163,11 +163,22 @@ const About = () => {
   /* =========================================================
      RESPONSIVE SLIDE SAFETY
 
+<<<<<<< HEAD
      Ekran o'zgarganda index noto'g'ri bo'lib qolmasligi uchun,
      render vaqtida to'g'ridan-to'g'ri chegaralanadi (effect shart emas).
   ========================================================== */
 
   const visibleSlide = Math.min(currentSlide, maxSlide)
+=======
+     Ekran o'zgarganda index noto'g'ri bo'lib qolmasligi uchun.
+  ========================================================== */
+
+  useEffect(() => {
+    if (currentSlide > maxSlide) {
+      setCurrentSlide(maxSlide)
+    }
+  }, [currentSlide, maxSlide])
+>>>>>>> 52fa01cbdd02b7a5ba6c748711dd6ba7f0b280f7
 
   /* =========================================================
      AUTO SLIDE — HAR 5 SEKUND
@@ -332,7 +343,11 @@ const About = () => {
                 <div
                   className="flex transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
                   style={{
+<<<<<<< HEAD
                     transform: `translateX(-${visibleSlide * slideWidth
+=======
+                    transform: `translateX(-${currentSlide * slideWidth
+>>>>>>> 52fa01cbdd02b7a5ba6c748711dd6ba7f0b280f7
                       }%)`,
                   }}
                 >
@@ -479,7 +494,11 @@ const About = () => {
 
             <div className="mt-8 flex items-center justify-center gap-2">
               {Array.from({ length: maxSlide + 1, }).map((_, index) => (
+<<<<<<< HEAD
                 <button key={index} type="button" onClick={() => setCurrentSlide(index)} aria-label={t(`${index + 1}-slaydga o'tish`)} className={`h-1.5 rounded-full transition-all duration-500 ${visibleSlide === index ? "w-8 bg-accent" : "w-1.5 bg-white/30 hover:bg-white/60"}`} />))}
+=======
+                <button key={index} type="button" onClick={() => setCurrentSlide(index)} aria-label={t(`${index + 1}-slaydga o'tish`)} className={`h-1.5 rounded-full transition-all duration-500 ${currentSlide === index ? "w-8 bg-accent" : "w-1.5 bg-white/30 hover:bg-white/60"}`} />))}
+>>>>>>> 52fa01cbdd02b7a5ba6c748711dd6ba7f0b280f7
             </div>
 
             {/* =================================================
